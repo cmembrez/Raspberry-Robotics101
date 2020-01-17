@@ -1,5 +1,6 @@
-# Project Style Transfert Camera
+# Style Transfert Camera
 
+Take a picture of the Raspberry Pi camera and apply style transfer.
 
 ### Install Pytorch and Torchvision
 
@@ -13,7 +14,7 @@ Install dependencies if needed.
 
 `python neural_style.py eval --content-image </path/to/content/image> --model </path/to/saved/model> --output-image </path/to/output/image> --content-type f`
 
-That's all, folks! Enjoy!
+That's all, folks!
 
 ### Todo
 
