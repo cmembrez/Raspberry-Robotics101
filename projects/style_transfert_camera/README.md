@@ -1,10 +1,10 @@
-# Style Transfert Camera
+# Style Transfer Camera
 
-Take a picture from the Raspberry Pi camera and apply style transfer.
+Apply style transfer to picture taken from the Raspberry Pi camera.
 
-![](utils/style_transfert.png)
+![](utils/style_transfer.png)
 
-And create your own vision/style transfert box.
+And create your own style transfer camera/box.
 
 ![](utils/examples-box.png)
 
@@ -25,6 +25,8 @@ Install dependencies if needed.
 ### Run it! (Graphical User Interface) -- comming soon!
 
 ![](utils/GUI.png)
+
+For more information on adding a push button (Box), go to the wiki page : 
 
 ### Run it! (command line)
 
