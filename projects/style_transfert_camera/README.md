@@ -2,11 +2,11 @@
 
 Take a picture from the Raspberry Pi camera and apply style transfer.
 
-![](images/style_transfert.png)
+![](utils/style_transfert.png)
 
 And create your own vision/style transfert box.
 
-![](images/examples-box.png)
+![](utils/examples-box.png)
 
 Raspberry Pi 3 and 4 could be used, but model with 1Gb memory will be limited in image input size. (limitation can be bypassed by augmenting the swap space, but this will masssively increase inference time) 
 
