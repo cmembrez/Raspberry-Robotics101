@@ -2,7 +2,7 @@
 
 Apply style transfer to picture taken from the Raspberry Pi camera.
 
-![](utils/style_transfer.png)
+![](utils/style_transfer.jpg)
 
 And create your own style transfer camera/box.
 
