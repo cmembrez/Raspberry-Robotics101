@@ -24,7 +24,7 @@ Install dependencies if needed.
 
 ### Run it! (Graphical User Interface) -- comming soon!
 
-![](images/gui.png)
+![](utils/GUI.png)
 
 ### Run it! (command line)
 
