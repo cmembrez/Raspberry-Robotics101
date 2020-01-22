@@ -8,7 +8,7 @@ And create your own style transfer camera/box.
 
 ![](utils/examples-box.png)
 
-The Raspberry Pi 3 and 4 could be used, but the model with 1 GB of memory will be limited in image input size. (the limitation can be circumvented by increasing the swap space, but this will massively increase the inference time) 
+The Raspberry Pi 3 and 4 can be used, but models with 1 GB of memory will be limited in image input size. (the limitation can be overcome by increasing the swap space, but this will greatly increase the inference time)
 
 The code is based on https://Github/Pytorch/examples/neural_style
 
