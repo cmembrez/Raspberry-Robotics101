@@ -8,9 +8,9 @@ And create your own style transfer camera/box.
 
 ![](utils/examples-box.png)
 
-Raspberry Pi 3 and 4 could be used, but model with 1Gb memory will be limited in image input size. (limitation can be bypassed by augmenting the swap space, but this will masssively increase inference time) 
+The Raspberry Pi 3 and 4 could be used, but the model with 1 GB of memory will be limited in image input size. (the limitation can be circumvented by increasing the swap space, but this will massively increase the inference time) 
 
-The code is initialy based on https://Github/Pytorch/examples/neural_style
+The code is based on https://Github/Pytorch/examples/neural_style
 
 
 
@@ -35,11 +35,11 @@ For more information on adding a push button (Box), go to the wiki page :
 
 ### Adding a new style
 
-Use the code here :  Github/Pytorch/examples/neural_style
+Use the code here :  https://Github/Pytorch/examples/neural_style
 
 ### Todo
 
 * Make a lightweiht model
-* Test NCS
+* Test Intel Neural Compute Stick
 * Capturing timelapse sequences
 
