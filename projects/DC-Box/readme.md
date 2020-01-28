@@ -13,3 +13,8 @@ Here are some useful links
 #### 2) Produce your own Images
 I like the idea of collecting my own pictures. Because there is good insight into the practical work.
 One possibility is a scan box (case).
+
+### 2) Software - GUI
+I worked with python and tkinter. The code will come soon.
+
+### 3) Model
