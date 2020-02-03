@@ -1,7 +1,7 @@
 # DC-Box (Detection-Classification) Box
 ## Plot
 The DC-Box should help to start an AI project. It goes through all the necessary stations.
-It starts with a use case. What is the purpose of this project? The next step is to collect the necessary data. Where do I get the data from? Choosing the right model for the task at hand. What hardware should be used? Write GUI for the interaction. Dealing with the output.
+It starts with a use case. What is the purpose of this project? The next step is to collect the necessary data. Where do I get the data from? Choosing the right model for the task at hand. Convert and optimize model. What hardware should be used? Write GUI for the interaction. Dealing with the output.
 
 e.g.: Leaf Box
 Recognize and classify leaves or herbs. The images come from a scan box (or from the Internet). A tkinter GUI helps with the recordings. After data acquisition, the model should be prepared for the NUC2.
