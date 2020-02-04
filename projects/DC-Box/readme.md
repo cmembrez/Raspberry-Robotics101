@@ -21,7 +21,7 @@ http://leafsnap.com/
 I like the idea of collecting my own pictures. Because there is good insight into the practical work.
 One possibility is a Scanbox (see: case). You will learn how to collect and prepare images. Data is a very important part of an AI
 project. Especially images in an object detection and classification project.
-![](IMG_3887.jpg)
+![](Scanbox.jpg)
 
 ### 2) Software - GUI
 I worked with python and tkinter. The code will come soon.
