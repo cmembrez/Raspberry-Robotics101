@@ -35,7 +35,7 @@ Which Model should one use?
 #### a) Pretrained Model
 
 #### b) Costume Model
-
+https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
 ### 4) Hardware
 #### Intel NUC2
 #### Raspberry PI
