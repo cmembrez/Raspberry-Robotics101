@@ -19,7 +19,8 @@ http://leafsnap.com/
 
 #### 2) Collecting your own Images
 I like the idea of collecting my own pictures. Because there is good insight into the practical work.
-One possibility is a scan box (see: case).
+One possibility is a Scanbox (see: case). You will learn how to collect and prepare images. Data is a very important part of an AI
+project. Especially images in an object detection and classification project.
 ![](IMG_3887.jpg)
 
 ### 2) Software - GUI
@@ -40,7 +41,7 @@ Which Model should one use?
 #### Raspberry PI
 #### Raspberry camera (if you use the Scanbox)
 
-### 5) Output
+### 5) Result
 In the end it should be possible to identify and classify leafs/herbs. 
-1) Just but a new leaf/herb in the Scanbox press "Classify" and the model should get the right typ.
-2) Without Scanbox, just load a new leaf/herb image press "Classify" and the model should get the right typ.
+1) Simply but a new leaf/herb in the Scanbox press "Classify" and the model should get the right typ.
+2) Without Scanbox, simply load a new leaf/herb image press "Classify" and the model should get the right typ.
