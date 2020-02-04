@@ -15,16 +15,19 @@ Images are essential for a deep learning project. There are two ways to get them
 
 #### 1) Download from Internet
 Here are some useful links
+http://leafsnap.com/
 
-#### 2) Produce your own Images
+#### 2) Collecting your own Images
 I like the idea of collecting my own pictures. Because there is good insight into the practical work.
-One possibility is a scan box (case).
+One possibility is a scan box (see: case).
 ![](IMG_3887.jpg)
 
 ### 2) Software - GUI
 I worked with python and tkinter. The code will come soon.
 
 #### OpenCV
+For this project basic commands are useful.
+e.g.: cv2.imwrite(), cv2.imread() ...
 
 ### 3) Model
 Which Model should one use? 
@@ -35,5 +38,9 @@ Which Model should one use?
 ### 4) Hardware
 #### Intel NUC2
 #### Raspberry PI
+#### Raspberry camera (if you use the Scanbox)
 
 ### 5) Output
+In the end it should be possible to identify and classify leafs/herbs. 
+1) Just but a new leaf/herb in the Scanbox press "Classify" and the model should get the right typ.
+2) Without Scanbox, just load a new leaf/herb image press "Classify" and the model should get the right typ.
