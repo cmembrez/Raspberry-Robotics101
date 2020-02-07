@@ -2,7 +2,7 @@
 
 * pytorch2onnx  
 
-Use pytorch2onnx.ypnb to convert pytorch model to ONNX.  
+Use pytorch2onnx.ipnb to convert pytorch model to ONNX.  
 ONNX files : Google Drive [Shared Folder](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
 
 * Leaf_dataset Notebook
