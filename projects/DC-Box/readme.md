@@ -37,7 +37,7 @@ Which Model should one use?
 #### b) Costume Model
 https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
 ### 4) Hardware
-#### Intel NUC2
+#### Intel NCS2
 #### Raspberry PI
 #### Raspberry camera (if you use the Scanbox)
 
