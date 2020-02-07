@@ -9,5 +9,5 @@ ONNX files : Google Drive [Shared Folder](https://drive.google.com/open?id=1wUgW
 
 Some changes have been made for use on PC -> see path to directory
 
-Major change: use of VGG19_bn instead of VGG19 -> use of batch normalization
+Major change: use of VGG19_bn instead of VGG19 -> use of batch normalization  
 20 epochs -> 95.2% accuracy
