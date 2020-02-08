@@ -1,0 +1,203 @@
+<?xml version="1.0" ?>
+<mapping>
+	<map>
+		<framework name="86" out_port_id="86"/>
+		<IR id="30" name="86" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="75" out_port_id="75"/>
+		<IR id="16" name="75" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="66" out_port_id="66"/>
+		<IR id="5" name="66" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="91" out_port_id="91"/>
+		<IR id="36" name="91" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="111" out_port_id="111"/>
+		<IR id="61" name="111" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="83" out_port_id="83"/>
+		<IR id="26" name="83" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="67" out_port_id="67"/>
+		<IR id="6" name="67" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="81" out_port_id="81"/>
+		<IR id="24" name="81/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="97" out_port_id="97"/>
+		<IR id="44" name="97/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="69" out_port_id="69"/>
+		<IR id="9" name="69/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="144" out_port_id="144"/>
+		<IR id="70" name="144/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="107" out_port_id="107"/>
+		<IR id="56" name="107" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="141" out_port_id="141"/>
+		<IR id="66" name="Interpolate/141" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="98" out_port_id="98"/>
+		<IR id="45" name="98" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="77" out_port_id="77"/>
+		<IR id="19" name="77/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="73" out_port_id="73"/>
+		<IR id="14" name="73/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="176" out_port_id="176"/>
+		<IR id="77" name="176" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="113" out_port_id="113"/>
+		<IR id="64" name="113/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="172" out_port_id="172"/>
+		<IR id="72" name="Interpolate/172" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="109" out_port_id="109"/>
+		<IR id="59" name="109/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="85" out_port_id="85"/>
+		<IR id="29" name="85/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="99" out_port_id="99"/>
+		<IR id="46" name="99" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="input.1" out_port_id="input.1"/>
+		<IR id="0" name="input.1" out_port_id="0"/>
+	</map>
+	<map>
+		<framework name="74" out_port_id="74"/>
+		<IR id="15" name="74" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="63" out_port_id="63"/>
+		<IR id="1" name="63" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="173" out_port_id="173"/>
+		<IR id="73" name="173" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="94" out_port_id="94"/>
+		<IR id="40" name="94" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="82" out_port_id="82"/>
+		<IR id="25" name="82" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="87" out_port_id="87"/>
+		<IR id="31" name="87" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="93" out_port_id="93"/>
+		<IR id="39" name="93/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="110" out_port_id="110"/>
+		<IR id="60" name="110" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="95" out_port_id="95"/>
+		<IR id="41" name="95" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="79" out_port_id="79"/>
+		<IR id="21" name="79" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="89" out_port_id="89"/>
+		<IR id="34" name="89/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="178" out_port_id="0"/>
+		<IR id="79" name="178" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="177" out_port_id="177"/>
+		<IR id="78" name="177" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="106" out_port_id="106"/>
+		<IR id="55" name="106" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="175" out_port_id="175"/>
+		<IR id="76" name="175/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="65" out_port_id="65"/>
+		<IR id="4" name="65/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="70" out_port_id="70"/>
+		<IR id="10" name="70" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="105" out_port_id="105"/>
+		<IR id="54" name="105/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="71" out_port_id="71"/>
+		<IR id="11" name="71" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="142" out_port_id="142"/>
+		<IR id="67" name="142" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="78" out_port_id="78"/>
+		<IR id="20" name="78" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="114" out_port_id="114"/>
+		<IR id="65" name="114" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="145" out_port_id="145"/>
+		<IR id="71" name="145" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="103" out_port_id="103"/>
+		<IR id="51" name="103" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="102" out_port_id="102"/>
+		<IR id="50" name="102" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="90" out_port_id="90"/>
+		<IR id="35" name="90" out_port_id="2"/>
+	</map>
+	<map>
+		<framework name="101" out_port_id="101"/>
+		<IR id="49" name="101/Ins_Norm/mul_/FusedScaleShift_" out_port_id="3"/>
+	</map>
+</mapping>
