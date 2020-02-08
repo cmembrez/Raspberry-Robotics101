@@ -36,7 +36,7 @@ Check the box to add a push button. Use pin 3.3v and n10. See image bellow :
 
 ### Run it! (command line)
 
-`python neural_style_inf.py eval --content-image </path/to/content/image> --model </path/to/saved/model> --output-image </path/to/output/image> --content-type f` 
+`python neural_style_inf.py eval --content-image </path/to/content/image> --model </path/to/saved/model> --output-image </path/to/output/image> --content-type f --content-scale 2` 
 
 
 ### Adding a new style
