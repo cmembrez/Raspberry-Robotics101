@@ -24,7 +24,9 @@ project. Especially images in an object detection and classification project.
 ![](Scanbox.jpg)
 
 ### 2) Software - GUI
-We worked with python and tkinter. First Basic Version (dcbox_v1.py) 
+We worked with python and tkinter. First Basic Version (program/dcbox_v1.py)
+The program is not yet finished. So if you want to make a contribution, we are more than happy.
+
 ![](DC-Box_v1.png)
 
 #### OpenCV
