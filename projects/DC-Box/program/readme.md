@@ -22,6 +22,7 @@ The saved image will be classified using NUC2 and openvino.
 ### def segmentation()
 The saved image will be segmented using NUC2 and openvino.
 
+## GUI
 ### Tkinter
 Layout for the program.
 Very Basic. 
