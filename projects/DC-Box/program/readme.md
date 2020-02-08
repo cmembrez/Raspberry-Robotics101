@@ -30,4 +30,4 @@ The saved image will be segmented using NUC2 and openvino.
 ### Tkinter
 Layout for the program.
 Very Basic. 
-## If anyone could program a nicer GUI, don't hesitate. 
+#### If anyone could program a nicer GUI, don't hesitate. 
