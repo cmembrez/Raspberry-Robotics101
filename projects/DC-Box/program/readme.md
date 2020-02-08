@@ -1,16 +1,16 @@
 # GUI for DC-Box
 The program is not yet finished. So if you want to make a contribution, we are more than happy.
 
-### preview()
+### def preview()
 In this section you can preview the pictures from Picamera.
 
-### preview_live()
+### def preview_live()
 Here there should be an live preview (video) of the object. This should help to set up the object.
 
-### side1()
+### def side1()
 The preview image (side 1) is saved on the PI.
 
-### side2()
+### def side2()
 The preview image (side 2) is saved on the PI.
 
 ### def detection()
