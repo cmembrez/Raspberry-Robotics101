@@ -5,6 +5,9 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
+from classifier import Classifier
+import logging as log
+import sys
 
 def preview():
     print('Preview Image')
@@ -22,10 +25,12 @@ def detection():
     
 def classification():
     print('Image classification')
+    classifier.classify(imagepath, 3, True)
     
 def segmentation():
     print('Image segmentation')
     
+log.basicConfig(format="[ %(levelname)s ] %(message)s", level=log.INFO, stream=sys.stdout)
 #Tktiner
 root = tk.Tk()
 root.geometry('1200x800+0+0')
@@ -70,16 +75,32 @@ bt_side1 = tk.Button (labelframe, padx=16, bd=2, text="Side 1",fg="red", command
 bt_side2 = tk.Button (labelframe, padx=16, bd=2, text="Side 2",fg="red", command=side2).grid(row=2, column=1, pady = 5, sticky="W")
 
 #Detection/Classification
+imagepath="leaf_test.jpg"
 dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
 bt_detection = tk.Button (dcframe, padx=16, bd=2, text="Detection",fg="green", command=detection).grid(row=1, column=0, pady = 5, sticky="EW")
 bt_classification = tk.Button (dcframe, padx=16, bd=2, text="Classification",fg="green", command=classification).grid(row=1, column=1, pady = 5, sticky="W")
 bt_segmentation = tk.Button (dcframe, padx=16, bd=2, text="Segmentation",fg="green", command=segmentation).grid(row=1, column=2, pady = 5, sticky="W")
-image_detection = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
+
+image_detection = ImageTk.PhotoImage(Image.open(imagepath))
 image_panel01 = tk.Label(dcimageframe, image = image_detection).grid(column=0, row=2, sticky="W")
-image_classification = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
+image_classification = ImageTk.PhotoImage(Image.open(imagepath))
 image_panel02 = tk.Label(dcimageframe, image = image_classification).grid(column=1, row=2, sticky="W")
-image_segmentation = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
+image_segmentation = ImageTk.PhotoImage(Image.open(imagepath))
 image_panel03 = tk.Label(dcimageframe, image = image_segmentation).grid(column=2, row=2, sticky="W")
+
+#prepare classifier pathes @@@ todo create a main method and hand it over or extend the gui
+#expects the model and a label file there:
+labelspath='./openvino/labels.txt'
+modelpath= './openvino/model_leaf_01.xml'
+#needed on intel desktop
+#device='CPU'
+#cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
+#needed on raspberry + nsc2
+device='MYRIAD'
+cpu_extension=''
+#init the classifier
+classifier = Classifier( modelpath, device, cpu_extension,labelspath)
+
 
 root.mainloop()
 
