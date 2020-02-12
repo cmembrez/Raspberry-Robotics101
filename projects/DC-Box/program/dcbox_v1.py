@@ -42,7 +42,7 @@ def segmentation():
 log.basicConfig(format="[ %(levelname)s ] %(message)s", level=log.INFO, stream=sys.stdout)
 #Tktiner
 root = tk.Tk()
-root.geometry('1200x800+0+0')
+root.geometry('1200x1000+0+0')
 root.title("DC-Box")
 
 #Frames für die GUI
@@ -83,19 +83,23 @@ leafs_input=ttk.Combobox(labelpanelframe,values=leafs,width=40).grid(column=0, r
 bt_side1 = tk.Button (labelframe, padx=16, bd=2, text="Side 1",fg="red", command=side1).grid(row=2, column=0, pady = 5, sticky="W")
 bt_side2 = tk.Button (labelframe, padx=16, bd=2, text="Side 2",fg="red", command=side2).grid(row=2, column=1, pady = 5, sticky="W")
 
-#Detection/Classification
-imagepath="leaf_test.jpg"
+# Detection/Classification
 dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
 bt_detection = tk.Button (dcframe, padx=16, bd=2, text="Detection",fg="green", command=detection).grid(row=1, column=0, pady = 5, sticky="EW")
-bt_classification = tk.Button (dcframe, padx=16, bd=2, text="Classification",fg="green", command=classification).grid(row=1, column=1, pady = 5, sticky="W")
-bt_segmentation = tk.Button (dcframe, padx=16, bd=2, text="Segmentation",fg="green", command=segmentation).grid(row=1, column=2, pady = 5, sticky="W")
+bt_classification = tk.Button (dcframe, padx=16, bd=2, text="Classification",fg="green", command=classification).grid(row=1, column=1, pady = 5)
+bt_segmentation = tk.Button (dcframe, padx=16, bd=2, text="Segmentation",fg="green", command=segmentation).grid(row=1, column=2, pady = 5)
 
-image_detection = ImageTk.PhotoImage(Image.open(imagepath))
+image_detection = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
 image_panel01 = tk.Label(dcimageframe, image = image_detection).grid(column=0, row=2, sticky="W")
-image_classification = ImageTk.PhotoImage(Image.open(imagepath))
+detection_image_text = tk.Label(dcimageframe, font=('arial', 12), text='\nResults: Detection e.g. \n\n Bounding Box: xyz').grid(column=0, row=3, sticky="EW")
+
+image_classification = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
 image_panel02 = tk.Label(dcimageframe, image = image_classification).grid(column=1, row=2, sticky="W")
-image_segmentation = ImageTk.PhotoImage(Image.open(imagepath))
+classification_image_text = tk.Label(dcimageframe, font=('arial', 12), text='\nResults: Classification e.g.\n\n acer_negundo 0.9999982\nptelea_trifoliata0.0000018 ').grid(column=1, row=3, sticky="EW")
+
+image_segmentation = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
 image_panel03 = tk.Label(dcimageframe, image = image_segmentation).grid(column=2, row=2, sticky="W")
+segmentation_image_text = tk.Label(dcimageframe, font=('arial', 12), text='\nResults: Segmentation e.g.\n\n ??? ').grid(column=2, row=3, sticky="EW")
 
 #prepare classifier pathes @@@ todo create a main method and hand it over or extend the gui
 #expects the model and a label file there:
