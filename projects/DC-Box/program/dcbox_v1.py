@@ -10,7 +10,16 @@ import logging as log
 import sys
 
 def preview():
-    print('Preview Image')
+    camera = picamera.PiCamera()
+    rawCapture = PiRGBArray(camera)
+    camera.resolution = (1920, 1088)
+    camera.capture(rawCapture, format="bgr")
+    imagecv = rawCapture.array
+    camera.close()
+    path = "/home/pi/Desktop/preview.png"
+    cv2.imwrite(path, imagecv)
+    print('Save Preview Image on Desktop')
+    
 def preview_live():
     print('Preview Image (Live Video) optional')
     
