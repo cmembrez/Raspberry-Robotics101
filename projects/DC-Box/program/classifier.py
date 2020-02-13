@@ -9,10 +9,9 @@ import threading
 
 
 class InferReqWrap:
-    def __init__(self, request, id, num_iter):
+    def __init__(self, request, id):
         self.id = id
         self.request = request
-        self.num_iter = num_iter
         self.cur_iter = 0
         self.cv = threading.Condition()
         self.request.set_completion_callback(self.callback, self.id)
@@ -36,7 +35,7 @@ class InferReqWrap:
 
     def execute(self, mode, input_data):
         if (mode == "async"):
-            log.info("Start inference ({} Asynchronous executions)".format(self.num_iter))
+            log.info("Start inference (Asynchronous executions)")
             self.input = input_data
             # Start async request for the first time. Wait all repetitions of the async request
             self.request.async_infer(input_data)
@@ -44,12 +43,11 @@ class InferReqWrap:
             self.cv.wait()
             self.cv.release()
         elif (mode == "sync"):
-            log.info("Start inference ({} Synchronous executions)".format(self.num_iter))
-            for self.cur_iter in range(self.num_iter):
-                # here we start inference synchronously and wait for
-                # last inference request execution
-                self.request.infer(input_data)
-                log.info("Completed {} Sync request execution".format(self.cur_iter + 1))
+            log.info("Start inference (Synchronous executions)")
+            # here we start inference synchronously and wait for
+            # last inference request execution
+            self.request.infer(input_data)
+            log.info("Completed Sync request execution")
         else:
             log.error("wrong inference mode is chosen. Please use \"sync\" or \"async\" mode")
 
@@ -107,8 +105,7 @@ class Classifier:
         infer_request = exec_net.requests[request_id];
 
         #prepare image
-        num_iter = 10
-        request_wrap = InferReqWrap(infer_request, request_id, num_iter)
+        request_wrap = InferReqWrap(infer_request, request_id)
         images = np.ndarray(shape=(1, c, h, w))
         
         image = cv2.imread(imagepath)
@@ -128,6 +125,12 @@ class Classifier:
         
         if printResult:
             self.printResult(res,number_top)
+            
+        prob = np.max(np.squeeze(res))
+        classid = np.argmax(np.squeeze(res))
+        classlabel = self.labels_map[classid] if self.labels_map else "{}".format(id)
+        
+        return (prob,classlabel)
         
     def printResult(self, res,number_top):
         log.info("Top {} results: ".format(number_top))
@@ -142,12 +145,9 @@ class Classifier:
             for id in top_ind:
                 det_label = self.labels_map[id] if self.labels_map else "{}".format(id)
                 label_length = len(det_label)
-                space_num_before = (7 - label_length) // 2
-                space_num_after = 7 - (space_num_before + label_length) + 2
-                space_num_before_prob = (11 - len(str(probs[id]))) // 2
-                print("{}{}{}{}{:.7f}".format(' ' * space_num_before, det_label,
-                                          ' ' * space_num_after, ' ' * space_num_before_prob,
-                                          probs[id]))
+                space_num_after = 20 - label_length
+                space_num_before_prob = (8 - len(str(probs[id])))
+                print("{:20}{:.7f}".format(det_label,probs[id]))
                 j+=1
                 if j >= number_top:
                     return
