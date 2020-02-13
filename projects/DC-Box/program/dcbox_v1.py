@@ -8,6 +8,7 @@ from PIL import ImageTk, Image
 from classifier import Classifier
 import logging as log
 import sys
+from picture import sidex, preview_image
 
 class Gui:
     def __init__(self,classifier):
@@ -87,24 +88,22 @@ class Gui:
 
 
     def preview(self):
-        camera = picamera.PiCamera()
-        rawCapture = PiRGBArray(camera)
-        camera.resolution = (1920, 1088)
-        camera.capture(rawCapture, format="bgr")
-        imagecv = rawCapture.array
-        camera.close()
-        path = "/home/pi/Desktop/preview.png"
-        cv2.imwrite(path, imagecv)
-        print('Save Preview Image on Desktop')
+        print('Save Preview Image')
+        path = "leaf_preview.png"
+        preview_image(path)
         
     def preview_live(self):
         print('Preview Image (Live Video) optional')
         
     def side1(self):
         print('Save Side 1 of image')
+        path = "leaf_side1.png"
+        sidex(path)
         
     def side2(self):
         print('Save Side 2 of image')
+        path = "leaf_side2.png"
+        sidex(path)
         
     def detection(self):
         print('Image detection (with Bounding Box)')
