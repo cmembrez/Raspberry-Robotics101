@@ -116,6 +116,7 @@ class Gui:
         self.classification_text.set('\nClassification\n{:20}{:.7f}\n'.format(classlabel,prob))
         
     def segmentation(self):
+        print('Image classification')
         self.segmentation_text.set('\nSegmentation:\n\n'.format())
         
 
