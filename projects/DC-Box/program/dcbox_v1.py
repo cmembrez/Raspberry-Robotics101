@@ -125,7 +125,6 @@ class Gui:
             pass
         image_name = folder + name
         sidex(image_name)
-        uploadimage()
         
     def upload(event=None):
         filename = filedialog.askopenfilename(initialdir = "/home/pi/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("png files","*.png"),("all files","*.*")))
