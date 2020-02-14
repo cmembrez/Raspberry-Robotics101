@@ -65,7 +65,8 @@ class Gui:
     #Labeling
         labeling_text = tk.Label(labelframe, font=('arial', 14), text='Labeling').grid(column=0, row=0, sticky="W")
         leafs=["","birch"]
-        leafs_input=ttk.Combobox(labelpanelframe,values=leafs,width=40).grid(column=0, row=1, pady = 5)
+        leafs_input=ttk.Combobox(labelpanelframe,values=leafs,width=40)
+        leafs_input.grid(column=0, row=1, pady = 5)
         bt_side1 = tk.Button (labelframe, padx=16, bd=2, text="Side 1",fg="red", command=self.side1).grid(row=2, column=0, pady = 5, sticky="W")
         bt_side2 = tk.Button (labelframe, padx=16, bd=2, text="Side 2",fg="red", command=self.side2).grid(row=2, column=1, pady = 5, sticky="W")
         
