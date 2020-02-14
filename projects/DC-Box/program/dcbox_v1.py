@@ -14,6 +14,7 @@ import os
 class Gui:
     def __init__(self,classifier):
     #Tktiner
+        global folder_name, leafs_input
         root = tk.Tk()
         root.geometry('1200x1000+0+0')
         root.title("DC-Box")
