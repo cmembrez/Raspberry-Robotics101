@@ -7,7 +7,6 @@ import logging as log
 from openvino.inference_engine import IENetwork, IECore
 import threading
 
-
 class InferReqWrap:
     def __init__(self, request, id):
         self.id = id
@@ -58,6 +57,10 @@ class Classifier:
         self.model_xml = modelpath
         self.model_bin = os.path.splitext(modelpath)[0] + ".bin"
         self.device = device
+        
+        self.mean = np.array([0.485, 0.456, 0.406])
+        self.std = np.array([0.229, 0.224, 0.225])
+        
         #read labels map fromn file
         self.labels_map = None
         if not labelspath is None: 
@@ -89,7 +92,8 @@ class Classifier:
                 self.ie = None
                 self.net = None
                 
-    def classify(self,imagepath, number_top, printResult):
+    def classify(self,image, number_top, printResult):
+        image = self.process_image(image)
         log.info("Preparing input blobs")
         input_blob = next(iter(self.net.inputs))
         out_blob = next(iter(self.net.outputs))
@@ -108,9 +112,8 @@ class Classifier:
         request_wrap = InferReqWrap(infer_request, request_id)
         images = np.ndarray(shape=(1, c, h, w))
         
-        image = cv2.imread(imagepath)
         if image.shape[:-1] != (h, w):
-            log.warning("Image {} is resized from {} to {}".format(imagepath, image.shape[:-1], (h, w)))
+            log.warning("Image is resized from {} to {}".format(image.shape[:-1], (h, w)))
             image = cv2.resize(image, (w, h))
         image = image.transpose((2, 0, 1))  # Change data layout from HWC to CHW
         images[0] = image
@@ -151,3 +154,31 @@ class Classifier:
                 j+=1
                 if j >= number_top:
                     return
+                
+    def process_image(self, image):
+        log.info("Process image")
+        #do the same preproccessing as in the trained model
+        image = cv2.resize(image, (256,256))
+        upper_pixel = (256 - 224) // 2
+        left_pixel = (256 - 224) // 2        
+        image = image[upper_pixel:224, left_pixel:224]
+        #normalize to 0,1 mean, std
+        image  = image  / image.max() # max value to one    
+          
+        imean = np.mean(image, axis=tuple(range(image.ndim-1)))
+        istd = np.std(image, axis=tuple(range(image.ndim-1)))
+        print(imean,istd)
+
+        #normalize to 0 mean std 1        
+        image -= imean   
+        image  /= istd 
+         
+        #mean , std of the model        
+        image *= self.std
+        image += self.mean
+    
+#        print(np.mean(image[:,:,0]),np.std(image[:,:,0]))
+#        print(np.mean(image[:,:,1]),np.std(image[:,:,1]))
+#        print(np.mean(image[:,:,2]),np.std(image[:,:,2]))
+    
+        return image                
