@@ -3,15 +3,18 @@
 # Datum: 08.02.2020
 
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
 from classifier import Classifier
 import logging as log
 import sys
+from picture import sidex, preview_image
+import os
 
 class Gui:
     def __init__(self,classifier):
     #Tktiner
+        global folder_name, leafs_input
         root = tk.Tk()
         root.geometry('1200x1000+0+0')
         root.title("DC-Box")
@@ -52,7 +55,9 @@ class Gui:
         preview_text = tk.Label(previewframe, font=('arial', 14), text='Preview ').grid(column=0, row=0, sticky="W")
         bt_preview = tk.Button (previewframe, padx=16, bd=2, text="Preview",fg="blue", command=self.preview).grid(row=1, column=0, pady = 5, sticky="W")
         bt_livepreview = tk.Button (previewframe, padx=16, bd=2, text="Live-Preview",fg="blue", command=self.preview_live).grid(row=1, column=1, pady = 5, sticky="W")
-    
+        bt_quit = tk.Button (previewframe, padx=16, bd=2, text="Upload",fg="blue", command=self.upload).grid(row=1, column=2, pady = 5, sticky="W")
+        bt_upload = tk.Button (previewframe, padx=16, bd=2, text="Quit",fg="blue", command=self.root.quit).grid(row=1, column=3, pady = 5, sticky="W")
+        
         image_preview = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
         image_panel01 = tk.Label(previewimageframe, image = image_preview).grid(column=0, row=2, sticky="W")
         image_livepreview = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
@@ -61,10 +66,14 @@ class Gui:
     #Labeling
         labeling_text = tk.Label(labelframe, font=('arial', 14), text='Labeling').grid(column=0, row=0, sticky="W")
         leafs=["","birch"]
-        leafs_input=ttk.Combobox(labelpanelframe,values=leafs,width=40).grid(column=0, row=1, pady = 5)
+        leafs_input=ttk.Combobox(labelpanelframe,values=leafs,width=40)
+        leafs_input.grid(column=0, row=1, pady = 5)
         bt_side1 = tk.Button (labelframe, padx=16, bd=2, text="Side 1",fg="red", command=self.side1).grid(row=2, column=0, pady = 5, sticky="W")
         bt_side2 = tk.Button (labelframe, padx=16, bd=2, text="Side 2",fg="red", command=self.side2).grid(row=2, column=1, pady = 5, sticky="W")
-    
+        
+    #Folder
+        folder_name = leafs_input.get()
+        
     # Detection/Classification
         dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
         bt_detection = tk.Button (dcframe, padx=16, bd=2, text="Detection",fg="green", command=self.detection).grid(row=1, column=0, pady = 5, sticky="EW")
@@ -87,24 +96,40 @@ class Gui:
 
 
     def preview(self):
-        camera = picamera.PiCamera()
-        rawCapture = PiRGBArray(camera)
-        camera.resolution = (1920, 1088)
-        camera.capture(rawCapture, format="bgr")
-        imagecv = rawCapture.array
-        camera.close()
-        path = "/home/pi/Desktop/preview.png"
-        cv2.imwrite(path, imagecv)
-        print('Save Preview Image on Desktop')
+        print('Save Preview Image')
+        path = "leaf_preview.png"
+        preview_image(path)
         
     def preview_live(self):
         print('Preview Image (Live Video) optional')
         
     def side1(self):
         print('Save Side 1 of image')
+        name = "leaf_side1.png"   
+        folder_name = leafs_input.get()       
+        folder = "/home/pi/images" + "/" + folder_name +"/"
+        try:
+            os.makedirs(folder)
+        except:
+            pass
+        image_name = folder + name
+        sidex(image_name)
         
     def side2(self):
         print('Save Side 2 of image')
+        name = "leaf_side2.png"
+        folder_name = leafs_input.get()       
+        folder = "/home/pi/images" + "/" + folder_name +"/"
+        try:
+            os.makedirs(folder)
+        except:
+            pass
+        image_name = folder + name
+        sidex(image_name)
+        
+    def upload(event=None):
+        filename = filedialog.askopenfilename(initialdir = "/home/pi/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("png files","*.png"),("all files","*.*")))
+        print('Selected:', filename)    
         
     def detection(self):
         print('Image detection (with Bounding Box)')
@@ -116,6 +141,7 @@ class Gui:
         self.classification_text.set('\nClassification\n{:20}{:.7f}\n'.format(classlabel,prob))
         
     def segmentation(self):
+        print('Image classification')
         self.segmentation_text.set('\nSegmentation:\n\n'.format())
         
 
