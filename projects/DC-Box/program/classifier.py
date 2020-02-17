@@ -92,7 +92,8 @@ class Classifier:
                 self.ie = None
                 self.net = None
                 
-    def classify(self,image, number_top, printResult):
+    def classify(self,imagepath, number_top, printResult):
+        image = cv2.imread(imagepath)
         image = self.process_image(image)
         log.info("Preparing input blobs")
         input_blob = next(iter(self.net.inputs))
@@ -157,6 +158,7 @@ class Classifier:
                 
     def process_image(self, image):
         log.info("Process image")
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #do the same preproccessing as in the trained model
         image = cv2.resize(image, (256,256))
         upper_pixel = (256 - 224) // 2
@@ -176,9 +178,5 @@ class Classifier:
         #mean , std of the model        
         image *= self.std
         image += self.mean
-    
-#        print(np.mean(image[:,:,0]),np.std(image[:,:,0]))
-#        print(np.mean(image[:,:,1]),np.std(image[:,:,1]))
-#        print(np.mean(image[:,:,2]),np.std(image[:,:,2]))
     
         return image                
