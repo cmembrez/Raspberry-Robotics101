@@ -31,4 +31,4 @@ The saved image will be segmented using NUC2 and openvino.
 Layout for the program.
 Very Basic. 
 #### If anyone could program a nicer GUI, don't hesitate. 
-![](DC-Box_v12.png)
+![](DC-Box_v13.png)
