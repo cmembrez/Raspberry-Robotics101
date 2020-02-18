@@ -43,6 +43,12 @@ class Gui:
         previewimageframe = tk.Frame(root)
         previewimageframe.grid(row=3, column=0, padx=10, pady=2, sticky="W")
         
+        imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
+        imagesize =["224x224"]
+        imagesize_input=ttk.Combobox(section01,values=imagesize,width=40)
+        imagesize_input.current(0)
+        imagesize_input.grid(column=1, row=2, pady = 5)
+        
         section04 = tk.Frame(root)
         section04.grid (row=4, column=0, padx=10, pady=2, sticky="W")
     
@@ -121,7 +127,7 @@ class Gui:
     def preview(self):
         global image_preview, image_preview01, image_preview02, image_preview03
         print('Save Preview Image')
-        path = "leaf_preview.png"
+        path = "/home/pi/DC-Box/leaf_preview.png"
         path_canny = "/home/pi/DC-Box/leaf_canny.png"
         path_gray = "/home/pi/DC-Box/leaf_gray.png"
         path_background = "/home/pi/DC-Box/leaf_background.png"
