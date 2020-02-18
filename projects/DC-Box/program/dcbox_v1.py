@@ -42,13 +42,7 @@ class Gui:
         previewframe.grid(row=2, column=0, padx=10, pady=2, sticky="W")
         previewimageframe = tk.Frame(root)
         previewimageframe.grid(row=3, column=0, padx=10, pady=2, sticky="W")
-        
-        imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
-        imagesize =["224x224"]
-        imagesize_input=ttk.Combobox(section01,values=imagesize,width=40)
-        imagesize_input.current(0)
-        imagesize_input.grid(column=1, row=2, pady = 5)
-        
+
         section04 = tk.Frame(root)
         section04.grid (row=4, column=0, padx=10, pady=2, sticky="W")
     
@@ -65,7 +59,13 @@ class Gui:
         project =["Leafs"]
         project_input=ttk.Combobox(section01,values=project,width=40)
         project_input.grid(column=1, row=1, pady = 5)
-        #imagesize = tk.Label(section01, font=('arial', 12), text='Settings ').grid(column=0, row=2, sticky="W")
+        
+        imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
+        imagesize =["224x224"]
+        imagesize_input=ttk.Combobox(section01,values=imagesize,width=40)
+        imagesize_input.current(0)
+        imagesize_input.grid(column=1, row=2, pady = 5)
+        
         label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=2, sticky="W")
         label=["","Abies", "Acer", "Betula"]
         label_input=ttk.Combobox(section01,values=label,width=40)
@@ -101,7 +101,7 @@ class Gui:
         image_panel03.grid(column=2, row=1, sticky="W")
         
     #Folder
-        folder_name = leafs_input.get()
+        #folder_name = leafs_input.get()
         
     # Detection/Classification
         dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
