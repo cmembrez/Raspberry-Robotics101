@@ -58,6 +58,7 @@ class Gui:
         project_text = tk.Label(section01, font=('arial', 12), text='Project:  ').grid(column=0, row=1, sticky="W")
         project =["Leafs"]
         project_input=ttk.Combobox(section01,values=project,width=40)
+        project_input.current(0)
         project_input.grid(column=1, row=1, pady = 5)
         
         imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
@@ -66,10 +67,11 @@ class Gui:
         imagesize_input.current(0)
         imagesize_input.grid(column=1, row=2, pady = 5)
         
-        label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=2, sticky="W")
+        label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=3, sticky="W")
         label=["","Abies", "Acer", "Betula"]
         label_input=ttk.Combobox(section01,values=label,width=40)
-        label_input.grid(column=1, row=2, pady = 5)    
+        label_input.current(0
+        label_input.grid(column=1, row=3, pady = 5)    
     
     #Preview
         preview_text = tk.Label(previewframe, font=('arial', 16), text='Preview').grid(column=0, row=0, sticky="W")
