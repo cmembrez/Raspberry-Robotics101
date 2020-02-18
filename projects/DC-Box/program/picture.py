@@ -18,6 +18,15 @@ def preview_image(path):
     imagecv = cv2.rotate(imagecv, cv2.ROTATE_180)
     imagecv = cv2.resize(imagecv, (250, 160))
     cv2.imwrite(path, imagecv)
+    imagepath = path
+    print(imagepath)
+    
+def upload(image_upload, path):
+    image_resize= cv2.imread (image_upload)
+    image_resize = cv2.resize(image_resize, (250, 160))
+    cv2.imwrite(path, image_resize)
+    imagepath = path
+    print(imagepath)
 
 def sidex(path):
     camera = picamera.PiCamera()
@@ -27,15 +36,10 @@ def sidex(path):
     camera.capture(rawCapture, format="bgr")
     imagecv = rawCapture.array
     imagecv = cv2.rotate(imagecv, cv2.ROTATE_180)
-    # The image size is changed according to the model
-    imagecv = cv2.resize(imagecv, (0, 0), fx=0.5, fy=0.5)
+    # The image size is changed according to the model in our case (224x224)
+    imagecv = cv2.resize(imagecv, (224, 224))
     camera.close()
     cv2.imwrite(path, imagecv)
-    
-def upload(image_upload, path):
-    image_resize= cv2.imread (image_upload)
-    image_resize = cv2.resize(image_resize, (250, 160))
-    cv2.imwrite(path, image_resize)
     
 def canny(image_upload, path_canny):
     image_resize= cv2.imread (image_upload)
