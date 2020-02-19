@@ -168,7 +168,7 @@ class Gui:
         print('Save Preview Image')
         path = "./preview.png"
         
-        cam_image = self.preview_image(path)
+        cam_image = preview_image(path)
         self.current_image_path = path
         
         self.update_images(cam_image)
