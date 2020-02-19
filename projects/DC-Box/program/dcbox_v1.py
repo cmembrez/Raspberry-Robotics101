@@ -13,9 +13,8 @@ import os
 from datetime import datetime
 
 class Gui:
-    def __init__(self,classifier):
+    def __init__(self,classifier,imagepath):
     #Tktiner
-        global folder_name, label_input, previewimageframe, section04
         root = tk.Tk()
         root.geometry('1200x1000+0+0')
         root.title("DC-Box")
@@ -30,6 +29,10 @@ class Gui:
         
         self.detection_text=tk.StringVar(root)
         self.detection_text.set('\nDetection:\nBounding Box: xyz')
+        
+        #local variables for data exchange 
+        self.current_image_path = imagepath        
+#        self.folder_name
         
     #Frames für die GUI
         topframe = tk.Frame(root, width= 1600, height = 50, bg="blue")
@@ -69,9 +72,10 @@ class Gui:
         
         label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=3, sticky="W")
         label=["","Abies", "Acer", "Betula"]
-        label_input=ttk.Combobox(section01,values=label,width=40)
-        label_input.current(0
-        label_input.grid(column=1, row=3, pady = 5)    
+        
+        self.label_input=ttk.Combobox(section01,values=label,width=40)
+        self.label_input.current(0)
+        self.label_input.grid(column=1, row=3, pady = 5)    
     
     #Preview
         preview_text = tk.Label(previewframe, font=('arial', 16), text='Preview').grid(column=0, row=0, sticky="W")
@@ -84,23 +88,26 @@ class Gui:
         bt_side2 = tk.Button (previewframe, padx=16, bd=2, text="Save: Side 2",fg="red", command=self.side2).grid(row=3, column=1, pady = 5, sticky="W")
         
         image_preview_text = tk.Label(previewimageframe, font=('arial', 12), text='Preview Image:  ').grid(column=0, row=1, sticky="W")
-        image_preview = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
-        image_panel01 = tk.Label(previewimageframe, image = image_preview).grid(column=0, row=2, sticky="W")
+        self.image_preview = ImageTk.PhotoImage(Image.open(self.current_image_path))
+        self.image_panel01 = tk.Label(previewimageframe, image = self.image_preview)
+        self.image_panel01.grid(column=0, row=2, sticky="W")
+        
         image_livepreview_text = tk.Label(previewimageframe, font=('arial', 12), text='Live-Preview Image:  ').grid(column=1, row=1, sticky="W")
-        image_livepreview = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
-        image_panel02 = tk.Label(previewimageframe, image = image_livepreview).grid(column=1, row=2, sticky="W")
+        self.image_livepreview = ImageTk.PhotoImage(Image.open(self.current_image_path))
+        self.image_panel02 = tk.Label(previewimageframe, image = self.image_livepreview)
+        self.image_panel02.grid(column=1, row=2, sticky="W")
         
-        image_canny = ImageTk.PhotoImage(Image.open("leaf_canny.png"))
-        image_panel01 = tk.Label(section04, image = image_canny)
-        image_panel01.grid(column=0, row=1)
+        self.image_canny = ImageTk.PhotoImage(Image.fromarray(canny(self.current_image_path,"./canny.png")))
+        self.image_panel03 = tk.Label(section04, image = self.image_canny)
+        self.image_panel03.grid(column=0, row=1, sticky="W")
         
-        image_gray = ImageTk.PhotoImage(Image.open("leaf_gray.png"))
-        image_panel02 = tk.Label(section04, image = image_gray)
-        image_panel02.grid(column=1, row=1, sticky="W")
+        self.image_gray = ImageTk.PhotoImage(Image.fromarray(gray(self.current_image_path,"./gray.png")))
+        self.image_panel04 = tk.Label(section04, image = self.image_gray)
+        self.image_panel04.grid(column=1, row=1, sticky="W")
         
-        image_background = ImageTk.PhotoImage(Image.open("leaf_background.png"))
-        image_panel03 = tk.Label(section04, image = image_background)
-        image_panel03.grid(column=2, row=1, sticky="W")
+        self.image_background = ImageTk.PhotoImage(Image.fromarray(background(self.current_image_path,"./backround.png")))
+        self.image_panel05 = tk.Label(section04, image = self.image_background)
+        self.image_panel05.grid(column=2, row=1, sticky="W")
         
     #Folder
         #folder_name = leafs_input.get()
@@ -111,50 +118,60 @@ class Gui:
         bt_classification = tk.Button (dcframe, padx=16, bd=2, text="Classification",fg="green", command=self.classification).grid(row=1, column=1, pady = 5)
         bt_segmentation = tk.Button (dcframe, padx=16, bd=2, text="Segmentation",fg="green", command=self.segmentation).grid(row=1, column=2, pady = 5)
     
-        image_detection = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
-        image_panel01 = tk.Label(dcimageframe, image = image_detection).grid(column=0, row=2, sticky="W")
+        self.image_detection = ImageTk.PhotoImage(Image.open(self.current_image_path))
+        self.image_panel06 = tk.Label(dcimageframe, image = self.image_detection)
+        self.image_panel06.grid(column=0, row=2, sticky="W")
         detection_image_text = tk.Label(dcimageframe, font=('arial', 12), textvariable=self.detection_text).grid(column=0, row=3, sticky="EW")
     
-        image_classification = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
-        image_panel02 = tk.Label(dcimageframe, image = image_classification).grid(column=1, row=2, sticky="W")
+        self.image_classification = ImageTk.PhotoImage(Image.open(self.current_image_path))
+        self.image_panel07 = tk.Label(dcimageframe, image = self.image_classification)
+        self.image_panel07.grid(column=1, row=2, sticky="W")
         classification_image_text = tk.Label(dcimageframe, font=('arial', 12), textvariable=self.classification_text).grid(column=1, row=3, sticky="EW")
     
-        image_segmentation = ImageTk.PhotoImage(Image.open("leaf_test.jpg"))
-        image_panel03 = tk.Label(dcimageframe, image = image_segmentation).grid(column=2, row=2, sticky="W")
+        self.image_segmentation = ImageTk.PhotoImage(Image.open(self.current_image_path))
+        self.image_panel08 = tk.Label(dcimageframe, image = self.image_segmentation)
+        self.image_panel08 .grid(column=2, row=2, sticky="W")
         segmentation_image_text = tk.Label(dcimageframe, font=('arial', 12), textvariable=self.segmentation_text).grid(column=2, row=3, sticky="EW")
         
         self.root.mainloop()
 
+# update the images after upload, preview, ..
+# we need for each image to keep the image and the label in a local variable self.image_preview, self.image_panel01
+    def update_images(self,image):
+        self.image_preview = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel01.configure(image=self.image_preview)
+        
+        self.image_livepreview = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel02.configure(image=self.image_livepreview)
+        
+        self.image_canny = ImageTk.PhotoImage(Image.fromarray(canny(self.current_image_path,"./canny.png")))
+        self.image_panel03.configure(image=self.image_canny)
+        
+        self.image_gray = ImageTk.PhotoImage(Image.fromarray(gray(self.current_image_path,"./gray.png")))
+        self.image_panel04.configure(image=self.image_gray)
 
+        self.image_bg = ImageTk.PhotoImage(Image.fromarray(background(self.current_image_path,"./background.png")))
+        self.image_panel05.configure(image=self.image_bg)
+
+        self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel06.configure(image=self.image_detection)
+        
+        self.image_classification = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel07.configure(image=self.image_classification)
+        
+        self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel08.configure(image=self.image_segmentation)
+        
+        
     def preview(self):
-        global image_preview, image_preview01, image_preview02, image_preview03
+#        global image_preview, image_preview01, image_preview02, image_preview03
         print('Save Preview Image')
-        path = "/home/pi/DC-Box/leaf_preview.png"
-        path_canny = "/home/pi/DC-Box/leaf_canny.png"
-        path_gray = "/home/pi/DC-Box/leaf_gray.png"
-        path_background = "/home/pi/DC-Box/leaf_background.png"
+        path = "./preview.png"
         
-        preview_image(path)
+        cam_image = self.preview_image(path)
+        self.current_image_path = path
         
-        image_preview = ImageTk.PhotoImage(Image.open("leaf_preview.png"))
-        image_panel01 = tk.Label(previewimageframe, image = image_preview)
-        image_panel01.grid(column=0, row=2, sticky="W")
-        
-        canny(path, path_canny)
-        gray(path, path_gray)
-        background(path, path_background)
-        
-        image_preview01 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_canny.png"))
-        image_panel01 = tk.Label(section04, image = image_preview01)
-        image_panel01.grid(column=0, row=1, sticky="W")
-        
-        image_preview02 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_gray.png"))
-        image_panel02 = tk.Label(section04, image = image_preview02)
-        image_panel02.grid(column=1, row=1, sticky="W")
-        
-        image_preview03 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_background.png"))
-        image_panel03 = tk.Label(section04, image = image_preview03)
-        image_panel03.grid(column=2, row=1, sticky="W")
+        self.update_images(cam_image)
         
     def preview_live(self):
         print('Preview Image (Live Video) optional')
@@ -162,7 +179,7 @@ class Gui:
     def side1(self):
         print('Save Side 1 of image')  
         time = datetime.now().strftime(" %Y%m%d_%H.%M.%S.png")
-        folder_name = label_input.get()
+        folder_name = self.label_input.get()
         name = folder_name + "_side1"
         folder = "/home/pi/DC-Box/images" + "/" + folder_name +"/"
         try:
@@ -175,7 +192,7 @@ class Gui:
     def side2(self):
         print('Save Side 2 of image')
         time = datetime.now().strftime(" %Y%m%d_%H.%M.%S.png")
-        folder_name = label_input.get()
+        folder_name = self.label_input.get()
         name = folder_name + "_side2"
         folder = "/home/pi/DC-Box/images" + "/" + folder_name +"/"
         try:
@@ -185,36 +202,15 @@ class Gui:
         path = folder + name + time
         sidex(path)
         
-    def upload(event=None):
-        global image_preview, image_preview01, image_preview02, image_preview03
+    def upload(self,event=None):
+#        global image_preview, image_preview01, image_preview02, image_preview03
         print('Uploads image')
-        path = "/home/pi/DC-Box/leaf_upload.png"
-        path_canny = "/home/pi/DC-Box/leaf_canny.png"
-        path_gray = "/home/pi/DC-Box/leaf_gray.png"
-        path_background = "/home/pi/DC-Box/leaf_background.png"
-        
-        filename = filedialog.askopenfilename(initialdir = "/home/pi/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("png files","*.png"),("all files","*.*")))
-        image_upload = filename
-        upload(image_upload, path)
-        canny(image_upload, path_canny)
-        gray(image_upload, path_gray)
-        background(image_upload, path_background)
-        
-        image_preview = ImageTk.PhotoImage(Image.open("leaf_upload.png"))
-        image_panel01 = tk.Label(previewimageframe, image = image_preview)
-        image_panel01.grid(column=0, row=2, sticky="W")
-        
-        image_preview01 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_canny.png"))
-        image_panel01 = tk.Label(section04, image = image_preview01)
-        image_panel01.grid(column=0, row=1, sticky="W")
-        
-        image_preview02 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_gray.png"))
-        image_panel02 = tk.Label(section04, image = image_preview02)
-        image_panel02.grid(column=1, row=1, sticky="W")
-        
-        image_preview03 = ImageTk.PhotoImage(Image.open("/home/pi/DC-Box/leaf_background.png"))
-        image_panel03 = tk.Label(section04, image = image_preview03)
-        image_panel03.grid(column=2, row=1, sticky="W")   
+        filename = filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = (("jpeg files","*.jpg"),("png files","*.png"),("all files","*.*")))
+        self.current_image_path = filename
+        upload_image = upload(filename, './upload.png')
+
+        self.update_images(upload_image)
+               
         
     def detection(self):
         print('Image detection (with Bounding Box)')
@@ -222,7 +218,7 @@ class Gui:
         
     def classification(self):
         print('Image classification')
-        (prob,classlabel) = self.classifier.classify(imagepath, 3, True)
+        (prob,classlabel) = self.classifier.classify(self.current_image_path, 3, True)
         self.classification_text.set('\nClassification\n{:20}{:.7f}\n'.format(classlabel,prob))
         
     def segmentation(self):
@@ -242,7 +238,7 @@ modelpath= './openvino/model_leaf_01.xml'
 device='MYRIAD'
 cpu_extension=''
 #init the classifier
-imagepath= "leaf_test.jpg"
+imagepath= "./leaf_test.jpg"
 classifier = Classifier( modelpath, device, cpu_extension,labelspath)
-gui = Gui(classifier)
+gui = Gui(classifier,imagepath)
 
