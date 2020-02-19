@@ -20,13 +20,14 @@ def preview_image(path):
     cv2.imwrite(path, imagecv)
     imagepath = path
     print(imagepath)
+    return imagecv
     
 def upload(image_upload, path):
     image_resize= cv2.imread (image_upload)
     image_resize = cv2.resize(image_resize, (250, 160))
     cv2.imwrite(path, image_resize)
-    imagepath = path
-    print(imagepath)
+    print(path)
+    return image_resize
 
 def sidex(path):
     camera = picamera.PiCamera()
@@ -40,14 +41,17 @@ def sidex(path):
     imagecv = cv2.resize(imagecv, (224, 224))
     camera.close()
     cv2.imwrite(path, imagecv)
+    return imagecv
     
 def canny(image_upload, path_canny):
+    print("image_upload",image_upload)
     image_resize= cv2.imread (image_upload)
     image_resize = cv2.resize(image_resize, (150, 100))  
     image_resize = cv2.Canny(image_resize, 50, 150)
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(image_resize, "Canny", (10, 90), font, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
     cv2.imwrite(path_canny,image_resize)
+    return image_resize
     
 def gray(image_upload, path_gray):
     image_resize= cv2.imread (image_upload)
@@ -56,6 +60,7 @@ def gray(image_upload, path_gray):
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(image_resize, "Gray", (10, 90), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
     cv2.imwrite(path_gray,image_resize)
+    return image_resize
     
 def background(image_upload, path_background):
     image_resize= cv2.imread (image_upload)
@@ -64,3 +69,4 @@ def background(image_upload, path_background):
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(image_resize, "GaussianBlur", (10, 90), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
     cv2.imwrite(path_background,image_resize)
+    return image_resize
