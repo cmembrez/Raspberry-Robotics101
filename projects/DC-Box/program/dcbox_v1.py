@@ -126,6 +126,10 @@ class Gui:
         self.image_panel05 = tk.Label(section04, image = self.image_background)
         self.image_panel05.grid(column=2, row=1, sticky="W")
         
+        self.image_boundingbox = ImageTk.PhotoImage(Image.fromarray(boundingbox(self.current_image_path,"./boundingbox.png")))
+        self.image_panel09 = tk.Label(section04, image = self.image_boundingbox)
+        self.image_panel09.grid(column=3, row=1, sticky="W")
+        
     # Detection/Classification
         dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
         bt_detection = tk.Button (dcframe, padx=16, bd=2, text="Detection",fg="green", command=self.detection).grid(row=1, column=0, pady = 5, sticky="EW")
