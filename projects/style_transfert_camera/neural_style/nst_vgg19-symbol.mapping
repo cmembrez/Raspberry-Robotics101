@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<mapping>
+	<map>
+		<framework name="activation2" out_port_id="0"/>
+		<IR id="19" name="activation2" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="activation1" out_port_id="0"/>
+		<IR id="16" name="activation1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv1_1" out_port_id="0"/>
+		<IR id="1" name="conv1_1" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="pool1" out_port_id="0"/>
+		<IR id="5" name="pool1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="activation7" out_port_id="0"/>
+		<IR id="30" name="activation7" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="data" out_port_id="0"/>
+		<IR id="0" name="data" out_port_id="0"/>
+	</map>
+	<map>
+		<framework name="pool2" out_port_id="0"/>
+		<IR id="10" name="pool2" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv3_1" out_port_id="0"/>
+		<IR id="11" name="conv3_1" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="upsampling1" out_port_id="0"/>
+		<IR id="26" name="upsampling1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="last_conv" out_port_id="0"/>
+		<IR id="35" name="last_conv" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="deco_bn5" out_port_id="0"/>
+		<IR id="20" name="deco_conv5" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="deco_bn13" out_port_id="0"/>
+		<IR id="33" name="deco_conv13" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="deco_bn7" out_port_id="0"/>
+		<IR id="22" name="deco_conv7" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="activation3" out_port_id="0"/>
+		<IR id="21" name="activation3" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="deco_bn12" out_port_id="0"/>
+		<IR id="31" name="deco_conv12" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="relu2_1" out_port_id="0"/>
+		<IR id="7" name="relu2_1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="activation4" out_port_id="0"/>
+		<IR id="23" name="activation4" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="relu3_1" out_port_id="0"/>
+		<IR id="12" name="relu3_1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="deco_bn8" out_port_id="0"/>
+		<IR id="24" name="deco_conv8" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="relu1_1" out_port_id="0"/>
+		<IR id="2" name="relu1_1" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="activation0" out_port_id="0"/>
+		<IR id="14" name="activation0" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="deco_bn1" out_port_id="0"/>
+		<IR id="13" name="deco_conv1" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="relu1_2" out_port_id="0"/>
+		<IR id="4" name="relu1_2" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="relu2_2" out_port_id="0"/>
+		<IR id="9" name="relu2_2" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="upsampling0" out_port_id="0"/>
+		<IR id="17" name="upsampling0" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="activation9" out_port_id="0"/>
+		<IR id="34" name="activation9" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="deco_bn2" out_port_id="0"/>
+		<IR id="15" name="deco_conv2" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="deco_bn4" out_port_id="0"/>
+		<IR id="18" name="deco_conv4" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="deco_bn11" out_port_id="0"/>
+		<IR id="29" name="deco_conv11" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="conv2_2" out_port_id="0"/>
+		<IR id="8" name="conv2_2" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="activation5" out_port_id="0"/>
+		<IR id="25" name="activation5" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="deco_bn10" out_port_id="0"/>
+		<IR id="27" name="deco_conv10" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="activation6" out_port_id="0"/>
+		<IR id="28" name="activation6" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv2_1" out_port_id="0"/>
+		<IR id="6" name="conv2_1" out_port_id="3"/>
+	</map>
+	<map>
+		<framework name="activation8" out_port_id="0"/>
+		<IR id="32" name="activation8" out_port_id="1"/>
+	</map>
+	<map>
+		<framework name="conv1_2" out_port_id="0"/>
+		<IR id="3" name="conv1_2" out_port_id="3"/>
+	</map>
+</mapping>
