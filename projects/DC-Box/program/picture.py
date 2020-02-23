@@ -2,6 +2,7 @@ import cv2
 import picamera
 from picamera.array import PiRGBArray
 import time
+import numpy as np
 
 def settings():
     global font
@@ -69,4 +70,24 @@ def background(image_upload, path_background):
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(image_resize, "GaussianBlur", (10, 90), font, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
     cv2.imwrite(path_background,image_resize)
+    return image_resize
+
+def boundingbox(image_upload, path_boundingbox):
+    img = cv2.imread('canny.png')
+    image_resize = cv2.imread(image_upload)
+    image_resize = cv2.resize(image_resize, (150, 100))
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    kernel = np.ones((3,3), dtype=np.uint8)
+    closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+    contours, hierarchy = cv2.findContours(closing, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+    cnt = max(contours, key=cv2.contourArea)
+    x,y,w,h = cv2.boundingRect(cnt)
+    cv2.rectangle(img, (x,y), (x+w, y+h), (255,255,0), 1)
+    cv2.imwrite(path_boundingbox,img)
+    cv2.rectangle(image_resize, (x,y), (x+w, y+h), (255,255,0), 1)
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(image_resize, "Bounding Box", (10, 90), font, 0.5, (255, 0, 255), 1, cv2.LINE_AA)
+    cv2.imwrite("image_edges_boundingbox.png", img)
+    cv2.imwrite(path_boundingbox, image_resize)
     return image_resize

@@ -9,7 +9,7 @@ from classifier import Classifier
 from segmentation import Segmentation
 import logging as log
 import sys
-from picture import sidex, preview_image, upload, canny, gray, background
+from picture import sidex, preview_image, upload, canny, gray, background, boundingbox
 import os
 from datetime import datetime
 
@@ -61,7 +61,17 @@ class Gui:
     # Section 1
         section01_heading = tk.Label(section01, font=('arial', 16), text='Settings').grid(column=0, row=0, sticky="W")
         project_text = tk.Label(section01, font=('arial', 12), text='Project:  ').grid(column=0, row=1, sticky="W")
-        project =["Leafs"]
+        #project =["Leafs"]
+        
+        f = open("project.txt", "r")
+        project = []
+        for line in f:
+            project.append(line.strip())
+        f.close()
+        
+        bt_new_project = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.preview)
+        bt_new_project.grid(row=1, column=2, padx = 5, sticky="W")
+        
         project_input=ttk.Combobox(section01,values=project,width=40)
         project_input.current(0)
         project_input.grid(column=1, row=1, pady = 5)
@@ -73,7 +83,14 @@ class Gui:
         imagesize_input.grid(column=1, row=2, pady = 5)
         
         label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=3, sticky="W")
-        label=["","Abies", "Acer", "Betula"]
+        #label=["","Abies", "Acer", "Betula"]
+        
+        labelname = "label.txt"
+        t = open(labelname, "r")
+        label = []
+        for line in t:
+            label.append(line.strip())
+        t.close()
         
         self.label_input=ttk.Combobox(section01,values=label,width=40)
         self.label_input.current(0)
@@ -111,8 +128,9 @@ class Gui:
         self.image_panel05 = tk.Label(section04, image = self.image_background)
         self.image_panel05.grid(column=2, row=1, sticky="W")
         
-    #Folder
-        #folder_name = leafs_input.get()
+        self.image_boundingbox = ImageTk.PhotoImage(Image.fromarray(boundingbox(self.current_image_path,"./boundingbox.png")))
+        self.image_panel09 = tk.Label(section04, image = self.image_boundingbox)
+        self.image_panel09.grid(column=3, row=1, sticky="W")
         
     # Detection/Classification
         dc_text = tk.Label(dcframe, font=('arial', 14), text='Detection/Classification ').grid(column=0, row=0)
@@ -154,6 +172,9 @@ class Gui:
 
         self.image_bg = ImageTk.PhotoImage(Image.fromarray(background(self.current_image_path,"./background.png")))
         self.image_panel05.configure(image=self.image_bg)
+        
+        self.image_bb = ImageTk.PhotoImage(Image.fromarray(boundingbox(self.current_image_path,"./boundingbox.png")))
+        self.image_panel09.configure(image=self.image_bb)
 
         self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
         self.image_panel06.configure(image=self.image_detection)
