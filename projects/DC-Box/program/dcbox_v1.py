@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
 from classifier import Classifier
+from segmentation import Segmentation
 import logging as log
 import sys
 from picture import sidex, preview_image, upload, canny, gray, background
@@ -13,7 +14,7 @@ import os
 from datetime import datetime
 
 class Gui:
-    def __init__(self,classifier,imagepath):
+    def __init__(self,classifier,SegmentationDetector,imagepath):
     #Tktiner
         root = tk.Tk()
         root.geometry('1200x1000+0+0')
@@ -26,6 +27,7 @@ class Gui:
 
         self.segmentation_text=tk.StringVar(root)
         self.segmentation_text.set('\nSegmentation:\n\n')
+        self.segmentationDetector = segmentationDetector
         
         self.detection_text=tk.StringVar(root)
         self.detection_text.set('\nDetection:\nBounding Box: xyz')
@@ -222,15 +224,23 @@ class Gui:
         self.classification_text.set('\nClassification\n{:20}{:.7f}\n'.format(classlabel,prob))
         
     def segmentation(self):
-        print('Image classification')
-        self.segmentation_text.set('\nSegmentation:\n\n'.format())
+        print('Image segmentation')
+        (image_segmentation, classlabel) = self.segmentationDetector.segmentation(self.current_image_path)
+
+        self.image_segmentation = ImageTk.PhotoImage(image_segmentation)
+        
+        self.image_panel08.configure(image=self.image_segmentation)
+        self.segmentation_text.set('\nSegmentation:\n{:20}\n'.format(classlabel))
         
 
 log.basicConfig(format="[ %(levelname)s ] %(message)s", level=log.INFO, stream=sys.stdout)
 #prepare classifier pathes @@@ todo create a main method and hand it over or extend the gui
 #expects the model and a label file there:
-labelspath='./openvino/labels.txt'
-modelpath= './openvino/model_leaf_01.xml'
+clabelspath='./openvino/labels.txt'
+cmodelpath= './openvino/model_leaf_01.xml'
+
+slabelspath='./openvino/voc.names'
+smodelpath= './openvino/model_leaf_segmentation_01.xml'
 #needed on intel desktop
 #device='CPU'
 #cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
@@ -239,6 +249,7 @@ device='MYRIAD'
 cpu_extension=''
 #init the classifier
 imagepath= "./leaf_test.jpg"
-classifier = Classifier( modelpath, device, cpu_extension,labelspath)
-gui = Gui(classifier,imagepath)
+classifier = Classifier( cmodelpath, device, cpu_extension,clabelspath)
+segmentationDetector = Segmentation( smodelpath, device, cpu_extension,slabelspath)
+gui = Gui(classifier,segmentationDetector,imagepath)
 

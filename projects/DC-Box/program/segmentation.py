@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import logging as log
 from openvino.inference_engine import IENetwork, IECore
+from PIL import ImageTk, Image
 import threading
 
 class InferReqWrap:
@@ -51,15 +52,23 @@ class InferReqWrap:
             log.error("wrong inference mode is chosen. Please use \"sync\" or \"async\" mode")
 
 
-class Classifier:
+class Segmentation:
     def __init__(self, modelpath, device, cpu_extension,labelspath):
         
         self.model_xml = modelpath
         self.model_bin = os.path.splitext(modelpath)[0] + ".bin"
         self.device = device
         
-        self.mean = np.array([0.485, 0.456, 0.406])
+        self.mean = np.array([0.485, 0.456, 0.406])        
         self.std = np.array([0.229, 0.224, 0.225])
+        
+#        self.mean = np.array([1.8788911, 1.8789016, 1.8788902])        
+#        self.std = np.array([1.1247681, 1.1247765, 1.1247907])
+        
+        palette = [2 ** 25 - 1, 2 ** 15 - 1, 2 ** 21 - 1]
+        self.colors = np.array([i for i in range(21)])[:, None] * palette
+        self.colors = (self.colors % 255).astype("uint8")
+        
         
         #read labels map fromn file
         self.labels_map = None
@@ -92,8 +101,9 @@ class Classifier:
                 self.ie = None
                 self.net = None
                 
-    def classify(self,imagepath, number_top, printResult):
+    def segmentation(self,imagepath):
         image = cv2.imread(imagepath)
+        imagesize =  image.shape
         image = self.process_image(image)
         log.info("Preparing input blobs")
         input_blob = next(iter(self.net.inputs))
@@ -125,50 +135,35 @@ class Classifier:
         # Processing output blob
         log.info("Processing output blob")
         
-        res = infer_request.outputs[out_blob]
+        output = infer_request.outputs[out_blob][0]
         
-        if printResult:
-            self.printResult(res,number_top)
+        output_predictions = output.argmax(0).astype("uint8")
+
+        hs,_ = np.histogram(output_predictions.flatten(),bins=len(self.labels_map)+1,range=(0,len(self.labels_map)+1))
+        classification = np.argmax(hs[1:])
+        print(hs)
+
+        print("predicted",classification,self.labels_map[classification])
+
+#        segmented_image = cv2.resize(output_predictions,(250, 160))
+        segmented_image =Image.fromarray(output_predictions)     
+        segmented_image.putpalette(self.colors)
             
-        prob = np.max(np.squeeze(res))
-        classid = np.argmax(np.squeeze(res))
-        classlabel = self.labels_map[classid] if self.labels_map else "{}".format(id)
+        return (segmented_image.resize((250, 160)),self.labels_map[classification])
         
-        return (prob,classlabel)
-        
-    def printResult(self, res,number_top):
-        log.info("Top {} results: ".format(number_top))
-        classid_str = "classid"
-        probability_str = "probability"
-        for i, probs in enumerate(res):
-            probs = np.squeeze(probs)
-            top_ind = np.argsort(probs)[number_top:][::-1]
-            print(classid_str, probability_str)
-#            print("{} {}".format('-' * len(classid_str), '-' * len(probability_str)))
-            j=0
-            for id in top_ind:
-                det_label = self.labels_map[id] if self.labels_map else "{}".format(id)
-                label_length = len(det_label)
-                space_num_after = 20 - label_length
-                space_num_before_prob = (8 - len(str(probs[id])))
-                print("{:20}{:.7f}".format(det_label,probs[id]))
-                j+=1
-                if j >= number_top:
-                    return
-                
     def process_image(self, image):
         log.info("Process image")
-        #image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+#        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #do the same preproccessing as in the trained model
-        image = cv2.resize(image, (255,255))
-        upper_pixel = (256 - 224) // 2
-        left_pixel = (256 - 224) // 2        
-        image = image[upper_pixel:224, left_pixel:224]
-        #normalize to [0,1] 
-        image  = image  / image.max() # max value to one    
+        image = cv2.resize(image, (512,512))
+        #normalize to [0,1]
+        image  = image  / image.max()# max value to one    
           
-        #mean , std of the model        
+        #normalize mean , std of the model        
         image -= self.mean
         image /= self.std
-    
+
+#        imean = np.mean(image, axis=tuple(range(image.ndim-1)))
+#        istd = np.std(image, axis=tuple(range(image.ndim-1)))
+        
         return image                
