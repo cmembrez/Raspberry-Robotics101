@@ -23,7 +23,7 @@ The DC box should help with 3 tasks.
 3. Allow people apply new data to the trained model
 
 The user should be able to apply these problems without having to deal with command line and other code problems. A simple user interface guides all types of people through the “Deep Learning” process. We implemented a leaf classification and recognition model that was trained with a provided data set. However, the DC box can be used for all types of data and applications. Our motivation was to turn a command line work into a user-friendly environment to help people of all backgrounds work with AI.
-After the project showcase was released some of us have published their ideas on our Slack channel. After a while of testing, we worked simultaneous on three projects and later we just focused on the DC box. The work was divided into small parts such as: selecting the model, training the data, optimizing the model and writing the GUI. In the end, we were a pretty good team of great people and happy submitting this project.
+After the project showcase was released some of us have published their ideas on our Slack channel. After a while of testing, we worked simultaneous on three projects and later we just focused on the DC box. The work was divided into small parts such as: Building the housing, selecting the model, training the data, optimizing the model and writing the GUI. In the end, we were a pretty good team of great people and happy submitting this project.
 
 
 ## Please include a link to your README file here detailing a.) How to run the project and b). What are the various command line parameters which could be changed and how to change them. *
