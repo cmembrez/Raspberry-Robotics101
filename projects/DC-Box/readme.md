@@ -38,7 +38,14 @@ Which Model should one use?
 #### a) Pretrained Model
 
 #### b) Costume Model
+Classification
+
 https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
+
+Segmentation
+
+https://drive.google.com/file/d/1g30kNgPw7lbjYl2ZZPfFF0KU7SK_QWIV
+
 ### 4) Hardware
 #### Intel NCS2
 #### Raspberry PI
