@@ -7,6 +7,24 @@ DC-Box – Detection and Classification Box
 ??? Education
 
 ## We want to hear your project's story! Explain how the idea for this project was conceived, the motivation behind it, and how your project was executed.
+To start an AI project, there are many things to consider and many questions to ask:
+•	Where do we get the data from?
+•	Do we understand the data?
+•	What is our goal?
+•	Which model / algorithm / function could be used to achieve this goal?
+•	What input data does the model need?
+•	Where and how do we train the model?
+•	Where is the inference carried out?
+•	…
+Some of these questions must be answered by the user / customer himself, others are "only" technical details. With this project we would like to address some of these “technical details”.
+The DC box should help with 3 tasks.
+1. Collect good data (pictures)
+2. Send this data to the training job (not yet implemented).
+3. Allow people apply new data to the trained model
+
+The user should be able to apply these problems without having to deal with command line and other code problems. A simple user interface guides all types of people through the “Deep Learning” process. We implemented a leaf classification and recognition model that was trained with a provided data set. However, the DC box can be used for all types of data and applications. Our motivation was to turn a command line work into a user-friendly environment to help people of all backgrounds work with AI.
+After the project showcase was released some of us have published their ideas on our Slack channel. After a while of testing, we worked simultaneous on three projects and later we just focused on the DC box. The work was divided into small parts such as: selecting the model, training the data, optimizing the model and writing the GUI. In the end, we were a pretty good team of great people and happy submitting this project.
+
 
 ## Please include a link to your README file here detailing a.) How to run the project and b). What are the various command line parameters which could be changed and how to change them. *
 
