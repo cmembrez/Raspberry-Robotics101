@@ -69,7 +69,7 @@ class Gui:
             project.append(line.strip())
         f.close()
         
-        bt_new_project = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.preview)
+        bt_new_project = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.newproject)
         bt_new_project.grid(row=1, column=2, padx = 5, sticky="W")
         
         project_input=ttk.Combobox(section01,values=project,width=40)
@@ -184,7 +184,21 @@ class Gui:
         
         self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
         self.image_panel08.configure(image=self.image_segmentation)
-        
+    
+    def newproject(self):
+        folder_name = self.project_input.get()
+        folder_name = './Project/' + folder_name
+        labelname = "test.txt"
+        print (folder_name)
+        try:
+            os.makedirs(folder_name)
+        except FileExistsError:
+            print("Project already exists")
+        try:
+            labelname = "label.txt"
+            os.open(labelname, "r")
+        except:
+            print("File already exists")
         
     def preview(self):
 #        global image_preview, image_preview01, image_preview02, image_preview03
