@@ -14,7 +14,17 @@ Recognize and classify leaves or herbs. The images come from a scan box (or from
 - Lasercutter (optional)
 - LED (optional)
 
-### 1) Case
+### Software:
+- Python 3
+https://www.raspberrypi.org/documentation/linux/software/python.md
+-	OpenCV
+https://www.learnopencv.com/install-opencv-4-on-raspberry-pi/
+-	Openvino
+https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_raspbian.html
+-	Install time, ...
+
+
+### 1) Housing (Optional)
 
 If you would like to 
 
