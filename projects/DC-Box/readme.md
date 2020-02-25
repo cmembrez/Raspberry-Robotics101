@@ -17,7 +17,10 @@ https://www.raspberrypi.org/documentation/linux/software/python.md
 https://www.learnopencv.com/install-opencv-4-on-raspberry-pi/
 -	Openvino
 https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_raspbian.html
--	Install time, ...
+-	numpy
+https://www.raspberrypi.org/forums/viewtopic.php?t=207058
+- PIL
+https://www.pkimber.net/howto/python/modules/pillow.html
 
 
 ### 1) Housing (Optional)
