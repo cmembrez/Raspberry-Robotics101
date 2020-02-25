@@ -56,8 +56,6 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 ### 2) Software Installation:
 
-#### Things used:
-
 1) First, be sure you have installed all the recommende software.
 2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py
 3) Create folder: openvino
@@ -65,11 +63,28 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 5) Downnload the models in openvino folder: .xml, .bin
 https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
 https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
-
-![](GUI_DCbox.jpg)
-
+6) You are ready to go!
 
 #### GUI
+
+#### Label new image
+1) Start dcbox_v1.py in LXTerminal
+2) Select Project: e.g.: leaf
+3) Select image size (not implemented yet)
+4) Press Preview or start Live-Preview
+5) Select Label
+6) Save image: Side 1 and Side 2
+7) Images are saved in the project folder
+
+#### Image Classification
+1) Start dcbox_v1.py in LXTerminal
+2) Select Project: leaf
+3) Press Preview, start Live-Preview or upload image
+4) Press Classification -> result will be displayed in the LXTerminal
+5) Press Segmentation -> result will be displayed in the LXTerminal
+6) Press Detection -> Not implemented yet!
+
+![](GUI_DCbox.jpg)
 
 ### 3) Training
 
