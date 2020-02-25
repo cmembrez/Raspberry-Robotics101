@@ -54,3 +54,4 @@ First, the Intel® Edge AI Fundamentals gave us the knowledge to start the proje
 ### Anna:
 ### Frank:
 ### Swiss:
+### Thomas: Erwin Entrich/ Thomas
