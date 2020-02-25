@@ -1,5 +1,5 @@
 # DCbox (Detection-Classification) Box
-![](projects/DC-Box/images/DC-Box.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DC-Box.jpg)
 ## Story
 AI on the edge is becoming increasingly important. A Raspberry PI in combination with an Intel NC2 stick is a real power horse, especially for real-time applications, slower Internet connections or security concerns.
 
@@ -15,7 +15,7 @@ With the DCbox you can take good training photos. They are resized, processed an
 - Lasercutter (optional)
 - LED (optional)
 
-![](projects/DC-Box/images/Hardware.png)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Hardware.png)
 
 #### Software:
 To run the project, you need to install the following software.
@@ -82,7 +82,7 @@ https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 5) Press Segmentation -> result will be displayed in the LXTerminal
 6) Press Detection -> Not implemented yet!
 
-![](projects/DC-Box/images/GUI_DCbox.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/GUI_DCbox.jpg)
 
 ### 5) Training
 
