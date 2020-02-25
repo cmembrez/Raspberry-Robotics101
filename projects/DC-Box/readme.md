@@ -4,7 +4,9 @@
 
 What is the DC-BOX and what it is used for.
 
-### Hardware:
+### Things used in this project:
+
+#### Hardware components:
 - Raspberry PI 3 (PI 4 with 4GB is recommanded)
 - PI Camera (optional)
 - Intel Neural Compute Stick NCS 2
@@ -13,7 +15,7 @@ What is the DC-BOX and what it is used for.
 
 ![](Hardware.png)
 
-### Software:
+#### Software:
 To run the project, you need to install the following software.
 
 - Python 3
@@ -33,7 +35,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 How the housing was build. including some pictures
 
 
-### 2) Software
+### 2) Software Installation:
 ![](GUI_DCbox.jpg)
 
 Installation of the software.
