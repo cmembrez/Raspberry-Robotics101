@@ -35,7 +35,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 ### 1) Housing (Optional)
 
 How the housing was build. including some pictures
-![/images](Housing_01.jpg)
+![](/images/Housing_01.jpg)
 
 ### 2) Software Installation:
 ![](GUI_DCbox.jpg)
