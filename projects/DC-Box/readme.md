@@ -54,7 +54,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 5) LED (lights are recommended, but are not part of the showcase)
 6) Done
 
-### 2) Install Pretrained models:
+### 2) Install pretrained models:
 
 1) First, be sure you have installed all the recommende software.
 2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py
