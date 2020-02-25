@@ -53,7 +53,7 @@ https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
 
 Segmentation
 
-https://drive.google.com/file/d/1g30kNgPw7lbjYl2ZZPfFF0KU7SK_QWIV
+https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 
 ### 4) Result
 
