@@ -1,4 +1,5 @@
 # DC-Box (Detection-Classification) Box
+![](DC-Box.jpg)
 ## Plot
 
 What is the DC-BOX and what it is used for.
