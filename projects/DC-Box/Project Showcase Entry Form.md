@@ -43,7 +43,7 @@ Everyone is talking about AI, large collaborations are already using AI, but a l
 
 ## GitHub Repo or Google collab link (optional)
 
-•	https://github.com/cmembrez/Raspberry-Robotics101/edit/master/projects/DC-Box/readme.md
+https://github.com/cmembrez/Raspberry-Robotics101/edit/master/projects/DC-Box
 
 ## Please provide either screenshots of your project's result / expected outcome or a link to a demo video below (optional)
 
