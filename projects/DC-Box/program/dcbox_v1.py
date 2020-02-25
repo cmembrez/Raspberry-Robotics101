@@ -74,12 +74,12 @@ class Gui:
             project.append(line.strip())
         f.close()
         
-        bt_new_project = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.preview)
+        bt_new_project = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.newproject)
         bt_new_project.grid(row=1, column=2, padx = 5, sticky="W")
         
-        project_input=ttk.Combobox(section01,values=project,width=40)
-        project_input.current(0)
-        project_input.grid(column=1, row=1, pady = 5)
+        self.project_input=ttk.Combobox(section01,values=project,width=40)
+        self.project_input.current(0)
+        self.project_input.grid(column=1, row=1, pady = 5)
         
         imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
         imagesize =["224x224"]
@@ -178,18 +178,33 @@ class Gui:
         self.image_bg = ImageTk.PhotoImage(Image.fromarray(background(self.current_image_path,"./background.png")))
         self.image_panel05.configure(image=self.image_bg)
         
+        self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel06.configure(image=self.image_detection)
+        
+        self.image_classification = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel07.configure(image=self.image_classification)
+        
+        self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
+        self.image_panel08.configure(image=self.image_segmentation)
+        
         self.image_bb = ImageTk.PhotoImage(Image.fromarray(boundingbox(self.current_image_path,"./boundingbox.png")))
         self.image_panel09.configure(image=self.image_bb)
 
-#        self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
-#        self.image_panel06.configure(image=self.image_detection)
-        
-#        self.image_classification = ImageTk.PhotoImage(Image.fromarray(image))
-#        self.image_panel07.configure(image=self.image_classification)
-        
-#        self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
-#        self.image_panel08.configure(image=self.image_segmentation)
-        
+    
+    def newproject(self):
+        folder_name = self.project_input.get()
+        folder_name = './Project/' + folder_name
+        labelname = "test.txt"
+        print (folder_name)
+        try:
+            os.makedirs(folder_name)
+        except FileExistsError:
+            print("Project already exists")
+        try:
+            labelname = "label.txt"
+            os.open(labelname, "r")
+        except:
+            print("File already exists")
         
     def preview(self):
         if self.thread is None:

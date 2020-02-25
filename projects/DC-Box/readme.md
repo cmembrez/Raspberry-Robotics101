@@ -7,6 +7,26 @@ e.g.: Leaf/Herb Box:
 
 Recognize and classify leaves or herbs. The images come from a scan box (or from the Internet). A tkinter GUI helps with the recordings and OpenCV helps with image editing. After data acquisition, the model should be prepared for the NUC2.
 
+### Hardware:
+- Raspberry PI 3 (PI 4 with 4GB is recommanded)
+- PI Camera (optional)
+- Intel Neural Compute Stick NCS 2
+- Lasercutter (optional)
+- LED (optional)
+
+### Software:
+- Python 3
+https://www.raspberrypi.org/documentation/linux/software/python.md
+-	OpenCV
+https://www.learnopencv.com/install-opencv-4-on-raspberry-pi/
+-	Openvino
+https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_raspbian.html
+-	Install time, ...
+
+
+### 1) Housing (Optional)
+
+If you would like to 
 
 ### 1) Data
 Images are essential for a deep learning project. There are two ways to get them.
@@ -45,11 +65,6 @@ https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
 Segmentation
 
 https://drive.google.com/file/d/1g30kNgPw7lbjYl2ZZPfFF0KU7SK_QWIV
-
-### 4) Hardware
-#### Intel NCS2
-#### Raspberry PI
-#### Raspberry camera (if you use the Scanbox)
 
 ### 5) Result
 In the end it should be possible to identify and classify leafs/herbs. 
