@@ -1,8 +1,10 @@
-# DC-Box (Detection-Classification) Box
+# DCbox (Detection-Classification) Box
 ![](DC-Box.jpg)
 ## Story
+AI on the edge is becoming increasingly important. A Raspberry PI in combination with an Intel NC2 stick is a real power horse, especially for real-time applications, slower Internet connections or security concerns.
 
-What is the DC-BOX and what it is used for.
+The DCbox is an inexpensive and easy way to start deep learning. All you need is a Raspberry PI, an Intel NC2 stick, a Picamera, some acrylic and you can start your project. We provide a leaf classification template, but you are welcome to start whatever you want.
+With the DCbox you can take good training photos. They are resized, processed and ready for training. The training part takes place in a Jupyter notebook. We also offer the trained leaf classification model, but as I said, train your own data and simply change the .XML and .bin files. After implementing the model files, you can classify 185 tree species. So take a trip "into the woods" and get a tree expert.
 
 ### Things used in this project:
 
