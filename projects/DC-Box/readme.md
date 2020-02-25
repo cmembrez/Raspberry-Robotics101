@@ -86,13 +86,16 @@ https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 
 ### 5) Training
 
-jupyter notebook
+#### Dataset
+As a starting point, for our project, we used a dataset from Columbia University and the University of Maryland, containing 30866 images of 185 tree species form the Northeastern United States. For our training we preprocessed existing images:
+- normalized
+- centred
+- resized 
+- cropped
+
+#### Model
+Our custom CNN model with several convolutional, pooling and fully-connected layers performed rather poorly, so the decision was to exercise the pre-trained VGG model. The VGG-19 model gave us 94% accuracy result on the validation set and VGG=19_bn outperformed by 1.2%, producing a 95.2% accuracy level.
 
 projects/DC-Box/pytorch/pytorch2onnx.ipynb
 projects/DC-Box/pytorch/Leaf_dataset.ipynb
 projects/DC-Box/pytorch/pytorch_deeplabv3-resnet101.ipynb
-
-
-Classification
-
-Segmentation
