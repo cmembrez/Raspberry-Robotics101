@@ -65,9 +65,7 @@ https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
 https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 6) You are ready to go!
 
-#### GUI
-
-#### Label new image
+### 3) Label new image
 1) Start dcbox_v1.py in LXTerminal
 2) Select Project: e.g.: leaf
 3) Select image size (not implemented yet)
@@ -76,7 +74,7 @@ https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 6) Save image: Side 1 and Side 2
 7) Images are saved in the project folder
 
-#### Image Classification
+### 4) Image Classification/Segmentation/Detection
 1) Start dcbox_v1.py in LXTerminal
 2) Select Project: leaf
 3) Press Preview, start Live-Preview or upload image
@@ -86,16 +84,10 @@ https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 
 ![](GUI_DCbox.jpg)
 
-### 3) Training
+### 5) Training
 
 jupyter notebook
 
 Classification
 
 Segmentation
-
-
-
-### 4) Result
-
-How get Results. (Upload or Picamera)
