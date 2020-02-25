@@ -10,6 +10,7 @@ What is the DC-BOX and what it is used for.
 - Intel Neural Compute Stick NCS 2
 - Lasercutter (optional)
 - LED (optional)
+![](Harware.png)
 
 ### Software:
 - Python 3
