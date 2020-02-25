@@ -57,6 +57,7 @@ class Classifier:
         self.model_xml = modelpath
         self.model_bin = os.path.splitext(modelpath)[0] + ".bin"
         self.device = device
+        self.cpu_extension = cpu_extension
         
         self.mean = np.array([0.485, 0.456, 0.406])
         self.std = np.array([0.229, 0.224, 0.225])
@@ -70,22 +71,22 @@ class Classifier:
         else:
             log.info("No Labels are defined")
             
-        
+    def init_device(self):        
         log.info("Creating Inference Engine")
         self.ie = IECore()
-        if cpu_extension and 'CPU' in device:
-            self.ie.add_extension(cpu_extension, "CPU")
+        if self.cpu_extension and 'CPU' in self.device:
+            self.ie.add_extension(self.cpu_extension, "CPU")
             log.info("Added CPU extension")
         
         log.info("Loading network files:\n\t{}\n\t{}".format(self.model_xml, self.model_bin))
         self.net = IENetwork(model=self.model_xml, weights=self.model_bin)
 
-        if "CPU" in device:
+        if "CPU" in self.device:
             supported_layers = self.ie.query_network(self.net, "CPU")
             not_supported_layers = [l for l in self.net.layers.keys() if l not in supported_layers]
             if len(not_supported_layers) != 0:
                 log.error("Following layers are not supported by the plugin for specified device {}:\n {}".
-                      format(device, ', '.join(not_supported_layers)))
+                      format(self.device, ', '.join(not_supported_layers)))
                 log.error("Please try to specify cpu extensions library path in sample's command line parameters using -l "
                       "or --cpu_extension command line argument")
                 
@@ -93,6 +94,7 @@ class Classifier:
                 self.net = None
                 
     def classify(self,imagepath, number_top, printResult):
+        self.init_device()
         image = cv2.imread(imagepath)
         image = self.process_image(image)
         log.info("Preparing input blobs")
@@ -133,6 +135,9 @@ class Classifier:
         prob = np.max(np.squeeze(res))
         classid = np.argmax(np.squeeze(res))
         classlabel = self.labels_map[classid] if self.labels_map else "{}".format(id)
+
+        self.ie=None
+        self.net=None
         
         return (prob,classlabel)
         

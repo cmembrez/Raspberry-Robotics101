@@ -58,12 +58,11 @@ class Segmentation:
         self.model_xml = modelpath
         self.model_bin = os.path.splitext(modelpath)[0] + ".bin"
         self.device = device
+        self.cpu_extension = cpu_extension
         
         self.mean = np.array([0.485, 0.456, 0.406])        
         self.std = np.array([0.229, 0.224, 0.225])
         
-#        self.mean = np.array([1.8788911, 1.8789016, 1.8788902])        
-#        self.std = np.array([1.1247681, 1.1247765, 1.1247907])
         
         palette = [2 ** 25 - 1, 2 ** 15 - 1, 2 ** 21 - 1]
         self.colors = np.array([i for i in range(21)])[:, None] * palette
@@ -79,22 +78,22 @@ class Segmentation:
         else:
             log.info("No Labels are defined")
             
-        
+    def init_device(self):        
         log.info("Creating Inference Engine")
         self.ie = IECore()
-        if cpu_extension and 'CPU' in device:
-            self.ie.add_extension(cpu_extension, "CPU")
+        if self.cpu_extension and 'CPU' in self.device:
+            self.ie.add_extension(self.cpu_extension, "CPU")
             log.info("Added CPU extension")
         
         log.info("Loading network files:\n\t{}\n\t{}".format(self.model_xml, self.model_bin))
         self.net = IENetwork(model=self.model_xml, weights=self.model_bin)
 
-        if "CPU" in device:
+        if "CPU" in self.device:
             supported_layers = self.ie.query_network(self.net, "CPU")
             not_supported_layers = [l for l in self.net.layers.keys() if l not in supported_layers]
             if len(not_supported_layers) != 0:
                 log.error("Following layers are not supported by the plugin for specified device {}:\n {}".
-                      format(device, ', '.join(not_supported_layers)))
+                      format(self.device, ', '.join(not_supported_layers)))
                 log.error("Please try to specify cpu extensions library path in sample's command line parameters using -l "
                       "or --cpu_extension command line argument")
                 
@@ -102,6 +101,7 @@ class Segmentation:
                 self.net = None
                 
     def segmentation(self,imagepath):
+        self.init_device()
         image = cv2.imread(imagepath)
         imagesize =  image.shape
         image = self.process_image(image)
@@ -148,14 +148,16 @@ class Segmentation:
 #        segmented_image = cv2.resize(output_predictions,(250, 160))
         segmented_image =Image.fromarray(output_predictions)     
         segmented_image.putpalette(self.colors)
+        self.ie = None
+        self.net = None
             
         return (segmented_image.resize((250, 160)),self.labels_map[classification])
         
     def process_image(self, image):
         log.info("Process image")
-#        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         #do the same preproccessing as in the trained model
-        image = cv2.resize(image, (512,512))
+        image = cv2.resize(image, (513,513))
         #normalize to [0,1]
         image  = image  / image.max()# max value to one    
           
@@ -165,5 +167,6 @@ class Segmentation:
 
 #        imean = np.mean(image, axis=tuple(range(image.ndim-1)))
 #        istd = np.std(image, axis=tuple(range(image.ndim-1)))
+        print(image.shape)
         
         return image                

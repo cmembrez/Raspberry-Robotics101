@@ -50,6 +50,7 @@ def live_preview(path,gui):
         if stop:
             break
     print("exit live_preview")
+    imagecv = cv2.cvtColor(imagecv, cv2.COLOR_BGR2RGB)
     cv2.imwrite(path, imagecv)
     camera.close()
     
