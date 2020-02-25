@@ -30,6 +30,7 @@ How the housing was build. including some pictures
 
 
 ### 2) Software
+![](GUI_DCbox.jpg)
 
 Installation of the software.
 
