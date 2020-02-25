@@ -54,13 +54,13 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 5) LED (lights are recommended, but are not part of the showcase)
 6) Done
 
-### 2) Software Installation:
+### 2) Install Pretrained models:
 
 1) First, be sure you have installed all the recommende software.
 2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py
 3) Create folder: openvino
 4) Download in openvino: labels.txt, voc.names
-5) Downnload the models in openvino folder: .xml, .bin
+5) Downnload the models and copy it into the openvino folder: .xml, .bin
 https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
 https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
 6) You are ready to go!
