@@ -14,6 +14,8 @@ What is the DC-BOX and what it is used for.
 ![](Hardware.png)
 
 ### Software:
+To run the project, you need to install the following software.
+
 - Python 3
 https://www.raspberrypi.org/documentation/linux/software/python.md
 -	OpenCV
