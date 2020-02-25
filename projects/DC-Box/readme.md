@@ -34,6 +34,12 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 ### 1) Housing (Optional)
 
+#### Things used for the housing:
+- 4mm acrylic glass 600x400mm
+- laser cutter
+- screws for Raspberry PI
+- hot glue gun
+
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_01.jpg)
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_03.jpg) ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_02.jpg)
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_04.jpg) ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_05.jpg)
