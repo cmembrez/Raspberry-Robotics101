@@ -4,7 +4,7 @@ DC-Box – Detection and Classification Box
 
 ## What category are you submitting this project to? (Examples of write-in categories might be Fashion, Animals, etc
 
-??? Education
+Education,ecology and botany 
 
 ## We want to hear your project's story! Explain how the idea for this project was conceived, the motivation behind it, and how your project was executed.
 To start an AI project, there are many things to consider and many questions to ask:
