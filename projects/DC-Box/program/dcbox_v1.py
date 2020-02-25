@@ -2,6 +2,7 @@
 # DCbox Version 1
 # Datum: 08.02.2020
 
+import time
 import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
@@ -9,9 +10,10 @@ from classifier import Classifier
 from segmentation import Segmentation
 import logging as log
 import sys
-from picture import sidex, preview_image, upload, canny, gray, background, boundingbox
+from picture import sidex, preview_image, live_preview, upload, canny, gray, background, boundingbox
 import os
 from datetime import datetime
+import threading
 
 class Gui:
     def __init__(self,classifier,SegmentationDetector,imagepath):
@@ -32,9 +34,12 @@ class Gui:
         self.detection_text=tk.StringVar(root)
         self.detection_text.set('\nDetection:\nBounding Box: xyz')
         
+        self.livepreview_text=tk.StringVar(root)
+        self.livepreview_text.set('Live-Preview')
         #local variables for data exchange 
         self.current_image_path = imagepath        
-#        self.folder_name
+        self.thread = None
+        self.thread_stop = True
         
     #Frames für die GUI
         topframe = tk.Frame(root, width= 1600, height = 50, bg="blue")
@@ -63,7 +68,7 @@ class Gui:
         project_text = tk.Label(section01, font=('arial', 12), text='Project:  ').grid(column=0, row=1, sticky="W")
         #project =["Leafs"]
         
-        f = open("project.txt", "r")
+        f = open("program/project.txt", "r")
         project = []
         for line in f:
             project.append(line.strip())
@@ -85,7 +90,7 @@ class Gui:
         label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=3, sticky="W")
         #label=["","Abies", "Acer", "Betula"]
         
-        labelname = "label.txt"
+        labelname = "program/label.txt"
         t = open(labelname, "r")
         label = []
         for line in t:
@@ -99,7 +104,7 @@ class Gui:
     #Preview
         preview_text = tk.Label(previewframe, font=('arial', 16), text='Preview').grid(column=0, row=0, sticky="W")
         bt_preview = tk.Button (previewframe, padx=16, bd=2, text="Preview",fg="blue", command=self.preview).grid(row=1, column=0, pady = 5, sticky="W")
-        bt_livepreview = tk.Button (previewframe, padx=16, bd=2, text="Live-Preview",fg="blue", command=self.preview_live).grid(row=1, column=2, pady = 5, sticky="W")
+        bt_livepreview = tk.Button (previewframe, padx=16, bd=2, textvariable=self.livepreview_text,fg="blue", command=self.preview_live).grid(row=1, column=2, pady = 5, sticky="W")
         bt_quit = tk.Button (previewframe, padx=16, bd=2, text="Upload",fg="blue", command=self.upload).grid(row=1, column=1, pady = 5, sticky="W")
         bt_upload = tk.Button (previewframe, padx=16, bd=2, text="Quit",fg="blue", command=self.root.quit).grid(row=1, column=3, pady = 5, sticky="W")
         saveimage_text = tk.Label(previewframe, font=('arial', 12), text='Save Image:  ').grid(column=0, row=2, sticky="W")
@@ -176,29 +181,60 @@ class Gui:
         self.image_bb = ImageTk.PhotoImage(Image.fromarray(boundingbox(self.current_image_path,"./boundingbox.png")))
         self.image_panel09.configure(image=self.image_bb)
 
-        self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
-        self.image_panel06.configure(image=self.image_detection)
+#        self.image_detection = ImageTk.PhotoImage(Image.fromarray(image))
+#        self.image_panel06.configure(image=self.image_detection)
         
-        self.image_classification = ImageTk.PhotoImage(Image.fromarray(image))
-        self.image_panel07.configure(image=self.image_classification)
+#        self.image_classification = ImageTk.PhotoImage(Image.fromarray(image))
+#        self.image_panel07.configure(image=self.image_classification)
         
-        self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
-        self.image_panel08.configure(image=self.image_segmentation)
+#        self.image_segmentation = ImageTk.PhotoImage(Image.fromarray(image))
+#        self.image_panel08.configure(image=self.image_segmentation)
         
         
     def preview(self):
-#        global image_preview, image_preview01, image_preview02, image_preview03
-        print('Save Preview Image')
+        if self.thread is None:
+
+            print('Save Preview Image')
+            path = "./preview.png"
+
+            cam_image = preview_image(path)
+            self.current_image_path = path
+        
+            self.update_images(cam_image)
+       
+    def preview_live_thread(self):
         path = "./preview.png"
-        
-        cam_image = preview_image(path)
-        self.current_image_path = path
-        
-        self.update_images(cam_image)
-        
+        live_preview(path,self)
+
     def preview_live(self):
-        print('Preview Image (Live Video) optional')
-        
+        if self.thread is None:
+            print('Preview Image (Live Video)')
+            self.thread_stop = False
+
+            self.thread = threading.Thread(target=self.preview_live_thread,args=())
+            self.thread.start()
+
+            self.livepreview_text.set('Stop Live-Preview')
+        else:
+            self.stop_preview_live()
+
+    def stop_preview_live(self):
+        if not self.thread is None:
+            self.thread_stop = True
+            print('Stop preview Image (Live Video)')
+            self.livepreview_text.set('Live-Preview')
+            time.sleep(2)
+            print('Preview Image (Live Video) is stopped')
+            self.thread = None
+            self.current_image_path = './preview.png'
+            upload_image = upload(self.current_image_path)
+            self.update_images(upload_image)
+
+    def update_live_preview(self,imagecv):
+        self.image_livepreview = ImageTk.PhotoImage(Image.fromarray(imagecv))
+        self.image_panel02.configure(image=self.image_livepreview)
+        return self.thread_stop
+
     def side1(self):
         print('Save Side 1 of image')  
         time = datetime.now().strftime(" %Y%m%d_%H.%M.%S.png")
@@ -226,11 +262,12 @@ class Gui:
         sidex(path)
         
     def upload(self,event=None):
+        self.live_preview=False
 #        global image_preview, image_preview01, image_preview02, image_preview03
         print('Uploads image')
         filename = filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = (("jpeg files","*.jpg"),("png files","*.png"),("all files","*.*")))
         self.current_image_path = filename
-        upload_image = upload(filename, './upload.png')
+        upload_image = upload(filename)
 
         self.update_images(upload_image)
                

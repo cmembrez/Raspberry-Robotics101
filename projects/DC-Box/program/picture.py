@@ -3,6 +3,7 @@ import picamera
 from picamera.array import PiRGBArray
 import time
 import numpy as np
+from PIL import ImageTk, Image
 
 def settings():
     global font
@@ -17,17 +18,45 @@ def preview_image(path):
     imagecv = rawCapture.array
     camera.close()
     imagecv = cv2.rotate(imagecv, cv2.ROTATE_180)
-    imagecv = cv2.resize(imagecv, (250, 160))
     cv2.imwrite(path, imagecv)
+    imagecv = cv2.resize(imagecv, (300, 200))
     imagepath = path
     print(imagepath)
     return imagecv
+
+def live_preview(path,gui):
+    camera = picamera.PiCamera()
+    camera.resolution = (640,480)
+    camera.framerate= 5
+    # capture frames from the camera
+    rawCapture = PiRGBArray(camera,size=(640,480))
+    time.sleep(0.1)
+    print("start frame capture")
+    stop = False
+    imagecv = None
+    for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
+        
+    # grab the raw NumPy array representing the image, then initialize the timestamp
+    # and occupied/unoccupied text
+        image = frame.array
+    # show the frame
+        imagecv = cv2.rotate(image, cv2.ROTATE_180)
+        image_resize = cv2.resize(imagecv, (300, 200))
+        stop = gui.update_live_preview(image_resize)
+
+#        key = cv2.waitKey(1) & 0xFF
+    # clear the stream in preparation for the next frame
+        rawCapture.truncate(0)
+        if stop:
+            break
+    print("exit live_preview")
+    cv2.imwrite(path, imagecv)
+    camera.close()
     
-def upload(image_upload, path):
-    image_resize= cv2.imread (image_upload)
-    image_resize = cv2.resize(image_resize, (250, 160))
+def upload(path):
+    image_resize= cv2.imread (path)
     cv2.imwrite(path, image_resize)
-    print(path)
+    image_resize = cv2.resize(image_resize, (300, 200))
     return image_resize
 
 def sidex(path):
