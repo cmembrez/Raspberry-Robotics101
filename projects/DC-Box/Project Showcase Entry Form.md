@@ -52,6 +52,6 @@ First, the Intel® Edge AI Fundamentals gave us the knowledge to start the proje
 
 ### Boris: Cyrille CLOT / Boris
 ### Anna:
-### Frank:
+### Frank: Frank Schneider / Frank S
 ### Swiss:
 ### Thomas: Erwin Entrich/ Thomas
