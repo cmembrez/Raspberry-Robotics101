@@ -66,8 +66,7 @@ class Gui:
     # Section 1
         section01_heading = tk.Label(section01, font=('arial', 16), text='Settings').grid(column=0, row=0, sticky="W")
         project_text = tk.Label(section01, font=('arial', 12), text='Project:  ').grid(column=0, row=1, sticky="W")
-        #project =["Leafs"]
-        
+                
         f = open("program/project.txt", "r")
         project = []
         for line in f:
@@ -78,7 +77,7 @@ class Gui:
         bt_new_project.grid(row=1, column=2, padx = 5, sticky="W")
         
         self.project_input=ttk.Combobox(section01,values=project,width=40)
-        self.project_input.current(0)
+        #self.project_input.current(0)
         self.project_input.grid(column=1, row=1, pady = 5)
         
         imagesize_text = tk.Label(section01, font=('arial', 12), text='Image Size:  ').grid(column=0, row=2, sticky="W")
@@ -86,6 +85,8 @@ class Gui:
         imagesize_input=ttk.Combobox(section01,values=imagesize,width=40)
         imagesize_input.current(0)
         imagesize_input.grid(column=1, row=2, pady = 5)
+        bt_new_imagesize = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.newimagesize)
+        bt_new_imagesize.grid(row=2, column=2, padx = 5, sticky="W")
         
         label_text = tk.Label(section01, font=('arial', 12), text='Label:  ').grid(column=0, row=3, sticky="W")
         #label=["","Abies", "Acer", "Betula"]
@@ -99,7 +100,9 @@ class Gui:
         
         self.label_input=ttk.Combobox(section01,values=label,width=40)
         self.label_input.current(0)
-        self.label_input.grid(column=1, row=3, pady = 5)    
+        self.label_input.grid(column=1, row=3, pady = 5)
+        bt_new_label = tk.Button (section01, padx=1, bd=1, text="New",fg="blue", command=self.newlabel)
+        bt_new_label.grid(row=3, column=2, padx = 5, sticky="W")
     
     #Preview
         preview_text = tk.Label(previewframe, font=('arial', 16), text='Preview').grid(column=0, row=0, sticky="W")
@@ -192,19 +195,36 @@ class Gui:
 
     
     def newproject(self):
-        folder_name = self.project_input.get()
-        folder_name = './Project/' + folder_name
-        labelname = "test.txt"
-        print (folder_name)
+        project_name = self.project_input.get()  
+        newprojectfolder = './Project/' + project_name
+        projectfile = './program/' + "project.txt"
+        print (newprojectfolder, projectfile)
+      
         try:
-            os.makedirs(folder_name)
+            os.makedirs(newprojectfolder)
+            with open (projectfile, "a") as f:
+                f.write(project_name +"\n")
+                f.close()
+            print("Project and labelfile was ceated")
         except FileExistsError:
             print("Project already exists")
+            
+    def newlabel(self):
+        label_name =self.label_input.get()
+        folder_name = self.project_input.get()
+        labelfile = './program/' + "label_" + folder_name + ".txt"
+        print (labelfile)
         try:
-            labelname = "label.txt"
-            os.open(labelname, "r")
-        except:
-            print("File already exists")
+            with open (labelfile, 'a') as f:
+                f.write(label_name+"\n")
+                f.close()
+                print ("New Label was written in the file.")
+        except FileNotFoundError:
+            #open(labelfile,"w+")
+            print ("Labelfile does not exist.")
+    
+    def newimagesize(self):
+        print ("Not implemented yet")
         
     def preview(self):
         if self.thread is None:
@@ -254,8 +274,9 @@ class Gui:
         print('Save Side 1 of image')  
         time = datetime.now().strftime(" %Y%m%d_%H.%M.%S.png")
         folder_name = self.label_input.get()
+        project_name = self.project_input.get()
         name = folder_name + "_side1"
-        folder = "/home/pi/DC-Box/images" + "/" + folder_name +"/"
+        folder = "./Project/" + project_name + "/" + folder_name +"/"
         try:
             os.makedirs(folder)
         except:
@@ -267,8 +288,9 @@ class Gui:
         print('Save Side 2 of image')
         time = datetime.now().strftime(" %Y%m%d_%H.%M.%S.png")
         folder_name = self.label_input.get()
-        name = folder_name + "_side2"
-        folder = "/home/pi/DC-Box/images" + "/" + folder_name +"/"
+        project_name = self.project_input.get()
+        name = folder_name + "_side1"
+        folder = "./Project/" + project_name + "/" + folder_name +"/"
         try:
             os.makedirs(folder)
         except:
