@@ -1,0 +1,1 @@
+*.{png,mp4,hdf5,cpickle,pickle,zip,model,gz,pdf,psd,bin,xml,mapping,jpg,mp3,wav,caffemodel,prototxt,dat,names,cfg,weights,csv,t7,pb,ipynb} filter=lfs diff=lfs merge=lfs -text
