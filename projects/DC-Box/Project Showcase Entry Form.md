@@ -23,7 +23,7 @@ The DC box should help with 3 tasks.
 3. Allow people apply new data to the trained model
 
 The user should be able to apply these problems without having to deal with command line and other code problems. A simple user interface guides all types of people through the “Deep Learning” process. We implemented a leaf classification and recognition model that was trained with a provided data set. However, the DC box can be used for all types of data and applications. Our motivation was to turn a command line work into a user-friendly environment to help people of all backgrounds work with AI.
-After the project showcase was released some of us have published their ideas on our Slack channel. After a while of testing, we worked simultaneous on three projects and later we just focused on the DC box. The work was divided into small parts such as: Building the housing, selecting the model, training the data, optimizing the model and writing the GUI. In the end, we were a pretty good team of great people and happy submitting this project.
+After the project showcase was released some of us published their ideas on our Slack channel. We discussed each of them and decided to focus on the DC box. The work was divided into small parts such as: Building the housing, selecting the model, training the data, optimizing the model and writing the GUI. In the end, we were a pretty good team of great people and happy submitting this project.
 
 
 ## Please include a link to your README file here detailing a.) How to run the project and b). What are the various command line parameters which could be changed and how to change them. *
@@ -37,10 +37,13 @@ Everyone is talking about AI, large collaborations are already using AI, but a l
 
 ## How did the Intel® Edge AI Fundamentals Course help you in creating your project?
 
-First, the Intel® Edge AI Fundamentals gave us the knowledge to start the project at all. Second, it also showed us that it is almost impossible to start an AI project without this knowledge. There are many problems to consider. In our opinion, people shouldn't take care of all the technical details. You should focus on the problem at hand, your goals and the data. The technical aspects should be taken from them as much as possible. This is how the idea of the DC box was born. Third, and perhaps the most valuable help from this course was the opportunity to build a team of great people to work with. Each of us focuses on a task, we helped and encouraged each other. Combine these three parts and you have the answer how the Intel® Edge AI Fundamentals Course helped us build our project.
+- First, the Intel® Edge AI Fundamentals gave us the knowledge to start the project at all. During the project, we found that the Raspberry PI and NCS2 are the perfect environment for working with AI Edge. All lessons in the Udacity course fit together perfectly and were useful to build the project.
+- Second, it also showed us that it is almost impossible to start an AI project without this knowledge. There are many problems to consider. In our opinion, people shouldn't take care of all the technical details. You should focus on the problem at hand, your goals and the data. The technical aspects should be taken from them as much as possible. This is how the idea of the DC box was born. 
+- Third, and perhaps the most valuable help from this course was the opportunity to build a team of great people to work with. Each of us focuses on a task, we helped and encouraged each other. Combine these three parts and you have the answer how the Intel® Edge AI Fundamentals Course helped us build our project.
+
 ## GitHub Repo or Google collab link (optional)
 
-•	https://github.com/cmembrez/Raspberry-Robotics101/edit/master/projects/DC-Box/readme.md
+https://github.com/cmembrez/Raspberry-Robotics101/edit/master/projects/DC-Box
 
 ## Please provide either screenshots of your project's result / expected outcome or a link to a demo video below (optional)
 
@@ -52,5 +55,6 @@ First, the Intel® Edge AI Fundamentals gave us the knowledge to start the proje
 
 ### Boris: Cyrille CLOT / Boris
 ### Anna:
-### Frank:
+### Frank: Frank Schneider / Frank S
 ### Swiss:
+### Thomas: Erwin Entrich/ Thomas

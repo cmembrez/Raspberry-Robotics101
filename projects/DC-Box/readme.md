@@ -1,5 +1,5 @@
 # DCbox (Detection-Classification) Box
-![](DC-Box.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DC-Box.jpg)
 ## Story
 AI on the edge is becoming increasingly important. A Raspberry PI in combination with an Intel NC2 stick is a real power horse, especially for real-time applications, slower Internet connections or security concerns.
 
@@ -15,7 +15,7 @@ With the DCbox you can take good training photos. They are resized, processed an
 - Lasercutter (optional)
 - LED (optional)
 
-![](Hardware.png)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Hardware.png)
 
 #### Software:
 To run the project, you need to install the following software.
@@ -34,27 +34,68 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 ### 1) Housing (Optional)
 
-How the housing was build. including some pictures
+#### Things used for the housing:
+- 4mm acrylic glass 600x400mm
+- laser cutter
+- screws and nuts for Raspberry PI
+- hot glue gun
 
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_01.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_03.jpg) ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_02.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_04.jpg) ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_05.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_07.jpg)
 
-### 2) Software Installation:
-![](GUI_DCbox.jpg)
+##### Short description:
 
-Installation of the software.
+1) All parts are glued together
+2) The nuts are fastened in the housing.
+3) The Raspberry PI is screwed in.
+4) The PIcamera is assembled.
+5) LED (lights are recommended, but are not part of the showcase)
+6) Done
 
+### 2) Install pretrained models:
 
-### 3) Training
+1) First, be sure you have installed all the recommende software.
+2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py
+3) Create folder: openvino
+4) Download in openvino: labels.txt, voc.names
+5) Downnload the models and copy it into the openvino folder: .xml, .bin
+https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
+https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
+6) You are ready to go!
 
-jupyter notebook
+### 3) Label new image
+1) Start dcbox_v1.py in LXTerminal
+2) Select Project: e.g.: leaf
+3) Select image size (not implemented yet)
+4) Press Preview or start Live-Preview
+5) Select Label
+6) Save image: Side 1 and Side 2
+7) Images are saved in the project folder
 
-Classification
+### 4) Image Classification/Segmentation/Detection
+1) Start dcbox_v1.py in LXTerminal
+2) Select Project: leaf
+3) Press Preview, start Live-Preview or upload image
+4) Press Classification -> result will be displayed in the LXTerminal
+5) Press Segmentation -> result will be displayed in the LXTerminal
+6) Press Detection -> Not implemented yet!
 
-https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/GUI_DCbox.jpg)
 
-Segmentation
+### 5) Training
 
-https://drive.google.com/file/d/1g30kNgPw7lbjYl2ZZPfFF0KU7SK_QWIV
+#### Dataset
+As a starting point, for our project, we used a dataset from Columbia University and the University of Maryland, containing 30866 images of 185 tree species form the Northeastern United States. For our training we preprocessed existing images:
+- normalized
+- centred
+- resized 
+- cropped
 
-### 4) Result
+#### Model
+Our custom CNN model with several convolutional, pooling and fully-connected layers performed rather poorly, so the decision was to exercise the pre-trained VGG model. The VGG-19 model gave us 94% accuracy result on the test set and VGG=19_bn outperformed by 1.2%, producing a 95.2% accuracy level.
 
-How get Results. (Upload or Picamera)
+- projects/DC-Box/pytorch/pytorch2onnx.ipynb
+- projects/DC-Box/pytorch/Leaf_dataset.ipynb
+- projects/DC-Box/pytorch/pytorch_deeplabv3-resnet101.ipynb

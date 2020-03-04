@@ -1,4 +1,4 @@
 # Raspberry-Robotics101
-RaspberryV3f Project Initial
+Hosting projects from Udacity students of the Fundamentals Challenge Phase of the [Intel® Edge AI Scholarship Program](https://www.udacity.com/scholarships/intel-edge-ai-scholarship)
 
-Learning robotics through basic and simple projects with a Raspberry V3f and coding in python.
+Learning Edge AI through projects with a Raspberry.
