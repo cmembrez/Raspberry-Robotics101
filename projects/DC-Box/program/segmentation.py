@@ -69,14 +69,10 @@ class Segmentation:
         self.colors = (self.colors % 255).astype("uint8")
         
         
-        #read labels map fromn file
-        self.labels_map = None
-        if not labelspath is None: 
-            log.info("Read Labels File")
-            with open(labelspath, 'r') as f:
-                self.labels_map = [x.split(sep=' ', maxsplit=1)[-1].strip() for x in f]
-        else:
-            log.info("No Labels are defined")
+        self.labels_map = {}
+        self.labels_map[0] = 'backround'
+        self.labels_map[1] = 'leaf'
+        self.labels_map[2] = 'other'
             
     def init_device(self):        
         log.info("Creating Inference Engine")
@@ -136,22 +132,25 @@ class Segmentation:
         log.info("Processing output blob")
         
         output = infer_request.outputs[out_blob][0]
+#        print(output.shape,np.min(output),np.max(output))
         
-        output_predictions = output.argmax(0).astype("uint8")
-
-        hs,_ = np.histogram(output_predictions.flatten(),bins=len(self.labels_map)+1,range=(0,len(self.labels_map)+1))
-        classification = np.argmax(hs[1:])
+        hs,_ = np.histogram(output.flatten(),bins=len(self.labels_map)+1,range=(0,len(self.labels_map)+1))
+        classification = np.argmax(hs[1:])+1
+        if classification >1:
+            classification = 2
+            
         print(hs)
 
         print("predicted",classification,self.labels_map[classification])
 
-#        segmented_image = cv2.resize(output_predictions,(250, 160))
-        segmented_image =Image.fromarray(output_predictions)     
+        segmented_image =Image.fromarray(output.astype(np.uint8))     
         segmented_image.putpalette(self.colors)
+#        segmented_image =Image.fromarray(segmented_image)     
         self.ie = None
         self.net = None
-            
-        return (segmented_image.resize((250, 160)),self.labels_map[classification])
+
+                    
+        return (segmented_image.resize((300, 200)),self.labels_map[classification])
         
     def process_image(self, image):
         log.info("Process image")
@@ -159,14 +158,15 @@ class Segmentation:
         #do the same preproccessing as in the trained model
         image = cv2.resize(image, (513,513))
         #normalize to [0,1]
-        image  = image  / image.max()# max value to one    
+#        image  = image  / image.max()# max value to one    
           
         #normalize mean , std of the model        
-        image -= self.mean
-        image /= self.std
+#        image -= self.mean
+#        image /= self.std
 
 #        imean = np.mean(image, axis=tuple(range(image.ndim-1)))
 #        istd = np.std(image, axis=tuple(range(image.ndim-1)))
         print(image.shape)
         
         return image                
+

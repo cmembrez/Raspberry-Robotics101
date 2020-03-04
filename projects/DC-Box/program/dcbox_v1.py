@@ -313,7 +313,7 @@ clabelspath='./openvino/labels.txt'
 cmodelpath= './openvino/model_leaf_01.xml'
 
 slabelspath='./openvino/voc.names'
-smodelpath= './openvino/model_leaf_segmentation_01.xml'
+smodelpath= './openvino/model_leaf_segmentation_02.xml'
 #needed on intel desktop
 #device='CPU'
 #cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
