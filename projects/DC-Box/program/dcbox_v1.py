@@ -163,7 +163,7 @@ class Gui:
         
         self.root.mainloop()
         
-        def settings(self):
+    def settings(self):
         win = tk.Toplevel()
         win.geometry('900x200+1010+35')
         win.wm_title("Settings")
@@ -224,7 +224,8 @@ class Gui:
         model=[""]
         self.model_input=ttk.Combobox(win,values=model,width=30, font=('arial', 10))
         self.model_input.current(0)
-        self.model_input.grid(row=4, column=3, pady = 5)
+        self.model_input.grid(row=4, column=3, pady = 5)        
+
 
     def display(self):
         win2 = tk.Toplevel()
