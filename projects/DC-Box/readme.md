@@ -61,8 +61,11 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 3) Create folder: openvino
 4) Download in openvino: labels.txt, voc.names
 5) Downnload the models and copy it into the openvino folder: .xml, .bin
-https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
-https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
+
+[classification model](https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R)
+
+[segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
+
 6) You are ready to go!
 
 ### 3) Label new image
@@ -93,9 +96,14 @@ As a starting point, for our project, we used a dataset from Columbia University
 - resized 
 - cropped
 
-#### Model
+#### Classification Model
 Our custom CNN model with several convolutional, pooling and fully-connected layers performed rather poorly, so the decision was to exercise the pre-trained VGG model. The VGG-19 model gave us 94% accuracy result on the test set and VGG=19_bn outperformed by 1.2%, producing a 95.2% accuracy level.
 
 - projects/DC-Box/pytorch/pytorch2onnx.ipynb
 - projects/DC-Box/pytorch/Leaf_dataset.ipynb
-- projects/DC-Box/pytorch/pytorch_deeplabv3-resnet101.ipynb
+
+#### Segmentation Model
+A tensorflow deeplab model was trained on the leaf dataset. It can be used to extract the relevant image parts for the classification to further improve the accuracy
+
+- projects/tensorflow/deeplab/Leaf_TensorflowDeeplapSegmenation.ipynb
+- projects/tensorflow/deeplab/deeplab_demo.ipynb
