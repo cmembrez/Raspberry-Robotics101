@@ -63,6 +63,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 5) Downnload the models and copy it into the openvino folder: .xml, .bin
 https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5R
 https://drive.google.com/file/d/1qJEYwBqI1eHG8b8IC-Y9w9ZqXDsIWalI
+https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_
 6) You are ready to go!
 
 ### 3) Label new image
