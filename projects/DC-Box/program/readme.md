@@ -17,7 +17,7 @@
 - classifier.py
 - segmentation.py
 - tinyyolov3.py
-#### Dcbox/openvino
+#### DCbox/openvino
 - All models from Google Drive (bin and xml file)
 - [classification model](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
 - [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
