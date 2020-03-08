@@ -11,20 +11,19 @@
 - project.txt
 - label.txt
 ### Folder structure
-- DCbox
-  dcbox_v1.py
-  detection.py
-  classifier.py
-  segmentation.py
-  tinyyolov3.py
-    - openvino
-      All models from Google Drive (bin and xml file)
-      [classification model](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
-      [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
-      [detection model](https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
-      project.txt
-      label.txt
-
+#### DCbox
+- dcbox_v1.py
+- detection.py
+- classifier.py
+- segmentation.py
+- tinyyolov3.py
+#### Dcbox/openvino
+- All models from Google Drive (bin and xml file)
+- [classification model](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
+- [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
+- [detection model](https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
+- project.txt
+- label.txt
 
 ## GUI for DC-Box (dcbox_v1.py)
 In the GUI you can preview images from the PI camera or upload them from your PC. The images are displayed with opencv and pre-processed (currently only for illustration). You can save your pictures in the project folder or start a new project.
