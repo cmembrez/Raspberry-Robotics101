@@ -8,6 +8,7 @@ from tkinter import ttk, filedialog
 from PIL import ImageTk, Image
 from classifier import Classifier
 from segmentation import Segmentation
+from detection import Detector
 import logging as log
 import sys
 from picture import sidex, preview_image, live_preview, upload, canny, gray, background, boundingbox
@@ -16,7 +17,7 @@ from datetime import datetime
 import threading
 
 class Gui:
-    def __init__(self,classifier,SegmentationDetector,imagepath):
+    def __init__(self,classifier,segmentationDetector,boundingboxDetector,imagepath):
     #Tktiner
         root = tk.Tk()
         root.geometry('1000x1000+0+0')
@@ -33,6 +34,7 @@ class Gui:
         
         self.detection_text=tk.StringVar(root)
         self.detection_text.set('\nDetection:\nBounding Box: xyz')
+        self.boundingboxDetector = boundingboxDetector
         
         self.livepreview_text=tk.StringVar(root)
         self.livepreview_text.set('Live-Preview')
@@ -415,7 +417,12 @@ class Gui:
         
     def detection(self):
         print('Image detection (with Bounding Box)')
-        self.detection_text.set('\nDetection\nBounding Box: {} {} {} {} \n\n'.format(0,0,0,0))
+        (image_detection, boundingbox) = self.boundingboxDetector.detection(self.current_image_path)
+
+        self.image_detection = ImageTk.PhotoImage(image_detection)
+        
+        self.image_panel06.configure(image=self.image_detection)
+        self.detection_text.set('\nDetection\n{}\n\n'.format(boundingbox))
         
     def classification(self):
         print('Image classification')
@@ -438,17 +445,24 @@ log.basicConfig(format="[ %(levelname)s ] %(message)s", level=log.INFO, stream=s
 clabelspath='./openvino/labels.txt'
 cmodelpath= './openvino/model_leaf_01.xml'
 
-slabelspath='./openvino/voc.names'
+#slabelspath='./openvino/voc.names'
 smodelpath= './openvino/model_leaf_segmentation_02.xml'
+
+#dlabelspath='./openvino/voc.names'
+dmodelpath= './openvino/yolov3-tiny-leaf-train_best.xml'
+#dmodelpath= './tinyYolo/tiny-yolo-ncs/yolo/frozen_darknet_tinyyolov3_model.xml'
+
 #needed on intel desktop
-#device='CPU'
-#cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
+device='CPU'
+cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
 #needed on raspberry + nsc2
-device='MYRIAD'
-cpu_extension=''
+#device='MYRIAD'
+#cpu_extension=''
 #init the classifier
 imagepath= "./leaf_test.jpg"
 classifier = Classifier( cmodelpath, device, cpu_extension,clabelspath)
-segmentationDetector = Segmentation( smodelpath, device, cpu_extension,slabelspath)
-gui = Gui(classifier,segmentationDetector,imagepath)
+segmentationDetector = Segmentation( smodelpath, device, cpu_extension)
+boundingboxDetector = Detector(dmodelpath, device, cpu_extension)
+
+gui = Gui(classifier,segmentationDetector,boundingboxDetector,imagepath)
 
