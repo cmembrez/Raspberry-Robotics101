@@ -205,6 +205,10 @@ class Detector:
         #orig.resize((300, 200))
         orig = cv2.cvtColor(orig, cv2.COLOR_RGB2BGR)
         orig = cv2.resize(orig, (300,200))
+        
+        self.ie = None
+        self.net = None
+        
         return (Image.fromarray(orig),label)
         
     def process_image(self, image):
