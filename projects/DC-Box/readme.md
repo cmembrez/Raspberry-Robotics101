@@ -90,9 +90,9 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 6) Press Detection -> result will be displayed in the LXTerminal
 7) Press the Butten "2. Display" to display results on a second screen. (not implemented yet)
 
-![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DCbox_gui_01.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DCbox_gui_01_500.jpg)
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DCbox_gui_02.jpg)
-![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DCbox_gui_03.jpg)
+![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/DCbox_gui_03_500.jpg)
 
 ### 5) Training
 
