@@ -62,7 +62,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 4) Download in openvino: labels.txt, voc.names
 5) Downnload the models and copy it into the openvino folder: .xml, .bin
 
-[classification model](https://drive.google.com/drive/folders/1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM])
+[classification model](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
 
 
 [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
