@@ -1,0 +1,7 @@
+classes= 43
+train  = ./data/leaf/train.txt
+valid  = ./data/leaf/valid.txt
+names = ./data/leaf/names.txt
+backup = backup
+eval = none
+
