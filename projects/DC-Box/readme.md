@@ -66,6 +66,8 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
 
+[detection model] (https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
+
 6) You are ready to go!
 
 ### 3) Label new image
@@ -96,6 +98,10 @@ As a starting point, for our project, we used a dataset from Columbia University
 - resized 
 - cropped
 
+#### Detection Model
+A tiny yolov3 model was trained using the darknet tool on bounding boxes. The ground truth bounding boxes have been created based on the images themself. The accuracy of the model need to be improved, but it is good enough to show a diffeent use case of Edge AI.
+- projects/darknet/Leaf_DarknetTinyYolov3ObjectDetection.ipynb
+
 #### Classification Model
 Our custom CNN model with several convolutional, pooling and fully-connected layers performed rather poorly, so the decision was to exercise the pre-trained VGG model. The VGG-19 model gave us 94% accuracy result on the test set and VGG=19_bn outperformed by 1.2%, producing a 95.2% accuracy level.
 
@@ -103,7 +109,7 @@ Our custom CNN model with several convolutional, pooling and fully-connected lay
 - projects/DC-Box/pytorch/Leaf_dataset.ipynb
 
 #### Segmentation Model
-A tensorflow deeplab model was trained on the leaf dataset. It can be used to extract the relevant image parts for the classification to further improve the accuracy
+A tensorflow deeplab model was trained on the leaf dataset. It can be used to extract the relevant image parts for the classification to further improve the accuracy.
 
 - projects/tensorflow/deeplab/Leaf_TensorflowDeeplapSegmenation.ipynb
 - projects/tensorflow/deeplab/deeplab_demo.ipynb
