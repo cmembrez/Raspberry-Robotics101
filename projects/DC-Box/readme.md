@@ -66,7 +66,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
 
-[detection model] (https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
+[detection model](https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
 
 6) You are ready to go!
 
