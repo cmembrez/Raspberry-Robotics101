@@ -1,4 +1,19 @@
-# GUI for DC-Box
+# What will you find here:
+## Files you need:
+### GUI for the DCbox
+- dcbox_v1.py
+### Files for Detection, Classification, Segmentation
+- detection.py
+- classifier.py
+- segmentation.py
+- tinyyolov3.py
+### .txt files for project and label
+- project.txt
+- label.txt
+### Folder structure
+
+
+## GUI for DC-Box
 The program is not yet finished. So if you want to make a contribution, we are more than happy.
 
 ## Preview
