@@ -53,7 +53,7 @@ class InferReqWrap:
 
 
 class Segmentation:
-    def __init__(self, modelpath, device, cpu_extension,labelspath):
+    def __init__(self, modelpath, device, cpu_extension):
         
         self.model_xml = modelpath
         self.model_bin = os.path.splitext(modelpath)[0] + ".bin"
