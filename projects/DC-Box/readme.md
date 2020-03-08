@@ -66,7 +66,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 
 [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
 
-[detection model] (https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
+[detection model](https://drive.google.com/open?id=17QcqasXilx4z5XL6ZFKiIvKECaXAls5b)
 
 6) You are ready to go!
 
@@ -85,7 +85,7 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 3) Press Preview, start Live-Preview or upload image
 4) Press Classification -> result will be displayed in the LXTerminal
 5) Press Segmentation -> result will be displayed in the LXTerminal
-6) Press Detection -> Not implemented yet!
+6) Press Detection -> result will be displayed in the LXTerminal
 
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/GUI_DCbox.jpg)
 
@@ -99,7 +99,7 @@ As a starting point, for our project, we used a dataset from Columbia University
 - cropped
 
 #### Detection Model
-A tiny yolov3 model was trained using the darknet tool on bounding boxes. The ground truth bounding boxes have been created based on the images themself. The accuracy of the model need to be improved, but it is good enough to show a diffeent use case of Edge AI.
+A tiny yolov3 model was trained using the darknet tool on bounding boxes. The ground truth bounding boxes have been created based on the images themself. The accuracy of the model need to be improved, but it is good enough to show a different use case of Edge AI.
 - projects/darknet/Leaf_DarknetTinyYolov3ObjectDetection.ipynb
 
 #### Classification Model
