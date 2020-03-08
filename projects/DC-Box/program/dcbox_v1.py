@@ -449,15 +449,14 @@ cmodelpath= './openvino/model_leaf_01.xml'
 smodelpath= './openvino/model_leaf_segmentation_02.xml'
 
 #dlabelspath='./openvino/voc.names'
-dmodelpath= './openvino/yolov3-tiny-leaf-train_best.xml'
-#dmodelpath= './tinyYolo/tiny-yolo-ncs/yolo/frozen_darknet_tinyyolov3_model.xml'
+dmodelpath= './openvino/model_leaf_detection_01.xml'
 
 #needed on intel desktop
-device='CPU'
-cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
+#device='CPU'
+#cpu_extension='/opt/intel/openvino/inference_engine/samples/build/intel64/Release/lib/libcpu_extension.so'
 #needed on raspberry + nsc2
-#device='MYRIAD'
-#cpu_extension=''
+device='MYRIAD'
+cpu_extension=''
 #init the classifier
 imagepath= "./leaf_test.jpg"
 classifier = Classifier( cmodelpath, device, cpu_extension,clabelspath)
