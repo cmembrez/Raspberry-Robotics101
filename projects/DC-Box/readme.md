@@ -3,8 +3,8 @@
 ## Story
 AI on the edge is becoming increasingly important. A Raspberry PI in combination with an Intel NC2 stick is a real power horse, especially for real-time applications, slower Internet connections or security concerns.
 
-The DCbox is an inexpensive and easy way to start deep learning. All you need is a Raspberry PI, an Intel NC2 stick, a Picamera, some acrylic and you can start your project. We provide a leaf classification template, but you are welcome to start whatever you want.
-With the DCbox you can take good training photos. They are resized, processed and ready for training. The training part takes place in a Jupyter notebook. We also offer the trained leaf classification model, but as I said, train your own data and simply change the .XML and .bin files. After implementing the leaf model files, you can classify 185 tree species. So take a trip "into the woods" and get a tree expert.
+The DCbox is an inexpensive and easy way to start deep learning. All you need is a Raspberry PI, an Intel NC2 stick, a Picamera, some acrylic and you can start your project. We offer a template for the classification, detection and segmentation of leaves. However, you can start your own project at any time.
+With the DCbox you can take good training photos. They are resized, processed and ready for training. The training part takes place outside the DCbox in a Jupyter notebook. At the beginning, we offer a trained leaf classification, recognition and segmentation model. However, as I said, take training pictures, train your data and simply change the XML and bin files. And you are ready to go. In our case you can classify 185 tree species. So take a trip "into the forest" and get a tree expert.
 
 ### Things used in this project:
 
@@ -57,13 +57,12 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 ### 2) Install pretrained models:
 
 1) First, be sure you have installed all the recommende software.
-2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py
+2) Download: dcbox_v1.py, picture.py, segmentation.py, classifier.py, detection.py, tinyyolov3.py
 3) Create folder: openvino
-4) Download in openvino: labels.txt, voc.names
-5) Downnload the models and copy it into the openvino folder: .xml, .bin
+4) Download in openvino: labels.txt, voc.names, project.txt
+5) Downnload the models from Google Drive and copy it into the openvino folder: .xml, .bin
 
 [classification model](https://drive.google.com/open?id=1wUgWwVYkGkXe6_noGpI24l3Pv4C3Z5RM)
-
 
 [segmentation model](https://drive.google.com/open?id=1LeClOcnVulWA0Z8ngMvnPUC9dgUmTMc_)
 
@@ -72,21 +71,24 @@ https://www.pkimber.net/howto/python/modules/pillow.html
 6) You are ready to go!
 
 ### 3) Label new image
-1) Start dcbox_v1.py in LXTerminal
+1) Start dcbox_v1.py in LXTerminal (don´t forget bash openvino)
 2) Select Project: e.g.: leaf
-3) Select image size (not implemented yet)
+3) You can specify your settings in the Settings area. (not implemented yet)
 4) Press Preview or start Live-Preview
+5) Opencv process images will be displayed. (Currently for illustrative purposes only)
 5) Select Label
 6) Save image: Side 1 and Side 2
 7) Images are saved in the project folder
+8) Press the Butten "2. Display" to display results on a second screen. (not implemented yet)
 
 ### 4) Image Classification/Segmentation/Detection
-1) Start dcbox_v1.py in LXTerminal
+1) Start dcbox_v1.py in LXTerminal (don´t forget bash openvino)
 2) Select Project: leaf
 3) Press Preview, start Live-Preview or upload image
 4) Press Classification -> result will be displayed in the LXTerminal
 5) Press Segmentation -> result will be displayed in the LXTerminal
 6) Press Detection -> result will be displayed in the LXTerminal
+7) Press the Butten "2. Display" to display results on a second screen. (not implemented yet)
 
 ![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/GUI_DCbox.jpg)
 
