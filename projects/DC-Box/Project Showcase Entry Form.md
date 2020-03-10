@@ -53,7 +53,7 @@ https://github.com/cmembrez/Raspberry-Robotics101/edit/master/projects/DC-Box
 
 ## If this is a team project, please list your team members by name. Please include their First & Last names as well as their Slack display name - e.g. Brenda Law / Brenda.Udacity, Grace Cho / Grace.Udacity
 
-### Boris: Cyrille CLOT / Boris
+### Boris: Boris
 ### Anna:
 ### Frank: Frank Schneider / Frank S
 ### Swiss:
