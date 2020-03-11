@@ -100,7 +100,7 @@ As a starting point, for our project, we used a dataset from Columbia University
 - centred
 - resized 
 - cropped
-
+![](http://leafsnap.com/static/dataset/leafsnap-dataset.tar)
 #### Detection Model
 A tiny yolov3 model was trained using the darknet tool on bounding boxes. The ground truth bounding boxes have been created based on the images themself. The accuracy of the model need to be improved, but it is good enough to show a different use case of Edge AI.
 - projects/darknet/Leaf_DarknetTinyYolov3ObjectDetection.ipynb
