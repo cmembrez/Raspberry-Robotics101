@@ -22,7 +22,8 @@ After that we freeze the last layer and train it with our own dataset.
 - Check Predictions
 - Plot Model Predictions
 
-- projects/DC-Box/Tensorflow/l06c03_exercise_flowers_with_transfer_learning_solution.ipynb
+Notebook:
+projects/DC-Box/Tensorflow/l06c03_exercise_flowers_with_transfer_learning_solution.ipynb
 
 ### ToDo
 
