@@ -22,15 +22,12 @@ After that we freeze the last layer and train it with our own dataset.
 - Check Predictions
 - Plot Model Predictions
 
-![](test)
-![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/Tensorflow/l06c03_exercise_flowers_with_transfer_learning_solution.ipynb)
-![](https://github.com/cmembrez/Raspberry-Robotics101/blob/master/projects/DC-Box/images/Housing_01.jpg)
+l06c03_exercise_flowers_with_transfer_learning_solution.ipynb
 
 ### ToDo
+
 - Export tensorflow model (saved_model.pb)
 - Convert into openvino model
-
-
 
 ## New model
 
